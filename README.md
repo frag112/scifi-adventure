@@ -1,5 +1,5 @@
 # scifi-adventure
-<a href ="https://frag112.itch.io/very-game?secret=VegzBVemosdouneDRVm6ubJNs0">The greatest video game ever (again)</a>
+<a href ="https://frag112.itch.io/very-game?secret=VegzBVemosdouneDRVm6ubJNs0">The greatest video game ever (again)</a><br>
 The space station is in danger! As a junior technician, it's up to you to help your team repair the station's ventilation system, and do it before you run out of air!
 
 <h2>Portfolio game project</h2>
