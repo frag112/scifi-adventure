@@ -1,5 +1,6 @@
 # scifi-adventure
 The greatest video game ever (again)
+https://frag112.itch.io/very-game?secret=VegzBVemosdouneDRVm6ubJNs0
 
 Проект видео игры для портфолио разработчика.
 Цели:
