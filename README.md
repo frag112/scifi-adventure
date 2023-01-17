@@ -1,8 +1,8 @@
 # scifi-adventure
-<a href ="#">The greatest video game ever (again)</a>
-https://frag112.itch.io/very-game?secret=VegzBVemosdouneDRVm6ubJNs0
+<a href ="https://frag112.itch.io/very-game?secret=VegzBVemosdouneDRVm6ubJNs0">The greatest video game ever (again)</a>
 
-Проект видео игры для портфолио разработчика.
+
+<h2>Проект видео игры для портфолио разработчика.</h2>
 Цели:
 
 1 Научиться работать с git и github
