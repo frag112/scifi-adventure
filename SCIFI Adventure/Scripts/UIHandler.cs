@@ -7,14 +7,15 @@ namespace ScifiAdventure
 {
 public class UIHandler : MonoBehaviour
 {
-        [SerializeField] private GameObject _dialoguePanel;
-        private Animator _dialogueAnimator;
+        [SerializeField] private GameObject _dialoguePanel, _questPanel;
+        private Animator _dialogueAnimator, _questAnimator;
         private TMP_Text _dialogueText;
-
+        [SerializeField] private List<TMP_Text> _questTexts;
         void OnEnable()
         {
             _dialogueText = _dialoguePanel.GetComponentInChildren<TMP_Text>();
             _dialogueAnimator = _dialoguePanel.GetComponent<Animator>();
+            _questAnimator= _questPanel.GetComponent<Animator>();
         }
 
         public void ShowDialogue(string line)
@@ -28,6 +29,22 @@ public class UIHandler : MonoBehaviour
         {
             _dialogueAnimator.SetBool("Active", false);
             
+        }
+        public void UpdateQuestList(List<Quest> quests)
+        {
+            for (int i = 0; i < quests.Count; i++)
+            {
+                _questTexts[i].text = quests[i].GiveTitle();
+            }
+        }
+        public void ShowActiveQuests()
+        {
+            _questAnimator.SetBool("Active", true);
+            Invoke("HideQuests", 10);
+        }
+        void HideQuests()
+        {
+            _dialogueAnimator.SetBool("Active", false);
         }
     }
 }
