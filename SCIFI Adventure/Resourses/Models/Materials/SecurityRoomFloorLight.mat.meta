@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 3e70a764549cde549b31cf177c6bd114
+=======
+guid: f87d3a48717fd6a43a1a17ec75bf7969
+>>>>>>> remotes/origin/lvl_dsgn
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000

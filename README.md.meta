@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 6f937e4b4f0e12c45ac7d2a58e103aca
+=======
+guid: 34cf21824336eb84c98b0271a8b33ad3
+>>>>>>> remotes/origin/lvl_dsgn
 TextScriptImporter:
   externalObjects: {}
   userData: 

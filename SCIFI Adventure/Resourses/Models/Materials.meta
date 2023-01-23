@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: ddd6106d57cf70043a00f8a9704ec2c5
+=======
+guid: 7247cb01a5a2b204db985d04af791786
+>>>>>>> remotes/origin/lvl_dsgn
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
