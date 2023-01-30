@@ -10,7 +10,9 @@ namespace StarterAssets
 		[Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
-		public bool jump;
+
+		public bool inventory;
+		public bool interaction;
 		public bool sprint;
 		public bool _fuck;
 
@@ -34,9 +36,19 @@ namespace StarterAssets
 				LookInput(value.Get<Vector2>());
 			}
 		}
+<<<<<<< HEAD
 			public void OnJump(InputValue value)
+=======
+
+		public void OnInteraction(InputValue value)
+>>>>>>> remotes/origin/dev2
 		{
-			JumpInput(value.isPressed);
+			InteractionInput(value.isPressed);
+		}
+
+		public void OnInventory(InputValue value)
+		{
+			InventoryInput(value.isPressed);
 		}
 		public void OnFuck(InputValue value)
 		{
@@ -60,9 +72,14 @@ namespace StarterAssets
 			look = newLookDirection;
 		}
 
-		public void JumpInput(bool newJumpState)
+		public void InventoryInput(bool newInventoryState)
 		{
-			jump = newJumpState;
+			inventory = newInventoryState;
+		}
+
+		public void InteractionInput(bool newInteractionState)
+		{
+			interaction = newInteractionState;
 		}
 		public void FuckInput(bool newFuckState)
 		{

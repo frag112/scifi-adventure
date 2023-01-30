@@ -22,6 +22,7 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+<<<<<<< HEAD
                 },
                 {
                     "name": "Jump",
@@ -31,6 +32,8 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+=======
+>>>>>>> remotes/origin/dev2
                 },
                 {
                     "name": "Sprint",
@@ -42,10 +45,26 @@
                     "initialStateCheck": false
                 },
                 {
+<<<<<<< HEAD
                     "name": "fuck",
                     "type": "PassThrough",
                     "id": "8ac310e5-44bc-4ab7-87bc-20551801a53d",
                     "expectedControlType": "",
+=======
+                    "name": "Interaction",
+                    "type": "Button",
+                    "id": "5db1ea79-dd0a-4c90-b6c1-5f28f36b227a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "e057ed1c-70dd-4d38-bb5c-a70e9438dab1",
+                    "expectedControlType": "Button",
+>>>>>>> remotes/origin/dev2
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -186,28 +205,6 @@
                 },
                 {
                     "name": "",
-                    "id": "1bd55a0b-761e-4ae4-89ae-8ec127e08a29",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9f973413-5e27-4239-acee-38c4a63feeba",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "dc65b89f-9bd3-43fb-92af-d0d87ba5faa4",
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
@@ -230,12 +227,82 @@
                 },
                 {
                     "name": "",
+<<<<<<< HEAD
                     "id": "6f843d2c-ec2f-475f-9308-e1acd6a2f53e",
                     "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "fuck",
+=======
+                    "id": "8fa65c99-1042-4a01-bb30-a985ff1d633c",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c57e7b5d-affe-4151-b659-a8c22fbb87c0",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db312591-a128-4d47-a056-9a5d9bf167ed",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a9f44137-3b8c-4985-b892-a78b5db3604b",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI Navigation",
+            "id": "18be779a-4c9a-45d9-b031-f14480509316",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "bf4d110f-9fe0-4571-b530-df37736a374e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "da4e8fce-d02f-4c44-b347-98bf2a5445d0",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+>>>>>>> remotes/origin/dev2
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
