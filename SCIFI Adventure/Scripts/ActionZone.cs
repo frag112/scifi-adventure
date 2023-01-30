@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ScifiAdventure
@@ -9,13 +7,12 @@ namespace ScifiAdventure
     {
         [SerializeField] private bool _buttonPressed;
         [SerializeField] private Interactible _interactible;
-        
 
         private void OnTriggerStay(Collider other)
         {
             if (other.CompareTag("Player") && _buttonPressed)
             {
-                _interactible.Interract();
+                _interactible.Interact();
             }
         }
 
@@ -28,4 +25,3 @@ namespace ScifiAdventure
         }
     }
 }
-

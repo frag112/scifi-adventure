@@ -5,15 +5,20 @@ using UnityEngine;
 
 namespace ScifiAdventure
 {
-    [RequireComponent(typeof(Animator))] 
-    public class QuestGiver : MonoBehaviour
+    [RequireComponent(typeof(Animator))]
+    public class QuestGiver : Interactible
     {
+        [Header("Quest section")]
+        [SerializeField] protected bool _canTalk;
+        [Tooltip("List of quests this NPC has")]
         [SerializeField] private List<Quest> _quests;
-        private Animator _animator;
+        [Header("NPC own components section")]
         [SerializeField]private AudioSource _mouth;
         [SerializeField] private AudioClip _speech;
-        [SerializeField] private UIHandler _uiHandler;
+
         [SerializeField] private Player _player;
+
+        private Animator _animator;
 
         private void OnEnable()
         {
@@ -57,7 +62,7 @@ namespace ScifiAdventure
                     finalLine = "We are not supposed to talk now";
                     break;
             }
-                _uiHandler.ShowDialogue(finalLine);
+            UIHandler.Instance.ShowDialogue(finalLine);
             TriggerAnimations();
         }
         private void GiveQuest()
@@ -69,7 +74,7 @@ namespace ScifiAdventure
                     if (quest._state == QuestState.NotActive)
                     {
                         quest._state = QuestState.Active;
-                        _uiHandler.ShowDialogue(quest.GiveDescription());
+                    UIHandler.Instance.ShowDialogue(quest.GiveDescription());
                         _player.PlayerGetQuest(quest);
                         TriggerAnimations();
                     break;
@@ -85,6 +90,11 @@ namespace ScifiAdventure
             {
                 _mouth.PlayOneShot(_speech);
             }
+        }
+
+        private void CanTalkNow()
+        {
+            _canTalk = true;
         }
     }
 

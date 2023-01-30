@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using StarterAssets;
 using UnityEngine;
 
 namespace ScifiAdventure
@@ -15,27 +14,55 @@ namespace ScifiAdventure
         {
             _audioSource = GetComponent<AudioSource>();
         }
-        public void Interract()
+
+        protected virtual void OnTriggerEnter(Collider other)
         {
-            InterractAction();
+            if (other.CompareTag("Player"))
+            {
+                other.GetComponent<ThirdPersonController>().AssignInteractibe(this);
+            }
         }
-        
+
+        protected virtual void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                other.GetComponent<ThirdPersonController>().AssignInteractibe(null);
+                SetIntaractState(true);
+            }
+        }
+
+        protected virtual void SetIntaractState(bool newState)
+        {
+            _isInteractible = newState;
+        }
+
+        public virtual void Interact()
+        {
+            if (_isInteractible)
+            {
+                InterractAction();
+                SetIntaractState(false);
+            }
+        }
+
         public void Leave()
         {
             LeaveAction();
         }
+
         protected virtual void InterractAction()
         {
             Debug.Log("You triggered some action");
         }
+
         protected virtual void LeaveAction()
         {
             Debug.Log("You triggered some  leave action");
         }
-        
+
         protected virtual void PlaySound(AudioClip sound)
         {
-
             if (!_audioSource.isPlaying)
             {
                 _audioSource.PlayOneShot(sound);
@@ -43,4 +70,3 @@ namespace ScifiAdventure
         }
     }
 }
-
