@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using ScifiAdventure;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -67,6 +68,9 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+
+
+        private Interactible _currentInteractible;
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -272,17 +276,25 @@ namespace StarterAssets
             }
         }
 
-        private void Interaction() // взаимодействие 
+        private void Interaction() 
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (_input.interaction)
             {
-                Debug.Log("Interaction");
-            }
+                if (!_currentInteractible)
+                {
+                    return;
+                }
+                _currentInteractible.Interact();
+            }         
+        }
+        public void AssignInteractibe(Interactible newInteractible)
+        {
+            _currentInteractible = newInteractible;
         }
 
-        private void Inventory() // инвентарь 
+        private void Inventory() 
         {
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (_input.inventory)
             {
                 Debug.Log("Inventory");
             }
