@@ -121,6 +121,7 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
+
         }
 
         private void Start()
@@ -150,6 +151,8 @@ namespace StarterAssets
             GravityPlayer();
             GroundedCheck();
             Move();
+            Interaction();
+            Inventory();
         }
 
         private void LateUpdate()
@@ -269,6 +272,22 @@ namespace StarterAssets
             }
         }
 
+        private void Interaction() // взаимодействие 
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("Interaction");
+            }
+        }
+
+        private void Inventory() // инвентарь 
+        {
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                Debug.Log("Inventory");
+            }
+        }
+
         private void GravityPlayer()
         {
             if (Grounded)
@@ -282,26 +301,7 @@ namespace StarterAssets
                     _verticalVelocity = -2f;
                 }
             }
-            else
-            {
-                // fall timeout
-                if (_fallTimeoutDelta >= 0.0f)
-                {
-                    _fallTimeoutDelta -= Time.deltaTime;
-                }
-                else
-                {
-                    // update animator if using character
-                    if (_hasAnimator)
-                    {
-                        _animator.SetBool(_animIDFreeFall, true);
-                    }
-                }
-
-                // if we are not grounded, do not jump
-                _input.jump = false;
-            }
-
+            
             if (_verticalVelocity < _terminalVelocity)
             {
                 _verticalVelocity += Gravity * Time.deltaTime;

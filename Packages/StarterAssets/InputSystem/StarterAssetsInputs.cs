@@ -10,7 +10,9 @@ namespace StarterAssets
 		[Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
-		public bool jump;
+
+		public bool inventory;
+		public bool interaction;
 		public bool sprint;
 
 		[Header("Movement Settings")]
@@ -34,9 +36,14 @@ namespace StarterAssets
 			}
 		}
 
-		public void OnJump(InputValue value)
+		public void OnInteraction(InputValue value)
 		{
-			JumpInput(value.isPressed);
+			InteractionInput(value.isPressed);
+		}
+
+		public void OnInventory(InputValue value)
+		{
+			InventoryInput(value.isPressed);
 		}
 
 		public void OnSprint(InputValue value)
@@ -56,9 +63,14 @@ namespace StarterAssets
 			look = newLookDirection;
 		}
 
-		public void JumpInput(bool newJumpState)
+		public void InventoryInput(bool newInventoryState)
 		{
-			jump = newJumpState;
+			inventory = newInventoryState;
+		}
+
+		public void InteractionInput(bool newInteractionState)
+		{
+			interaction = newInteractionState;
 		}
 
 		public void SprintInput(bool newSprintState)
