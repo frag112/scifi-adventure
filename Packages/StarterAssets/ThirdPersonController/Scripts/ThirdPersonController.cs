@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ScifiAdventure;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -75,6 +76,10 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        [Header("Interactables")]
+        [Tooltip("Player in the zone of this interactable now")]
+        public Interactible _currentInteractible;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -125,6 +130,7 @@ namespace StarterAssets
 
         private void Awake()
         {
+            _currentInteractible= null;
             // get a reference to our main camera
             if (_mainCamera == null)
             {
@@ -159,6 +165,7 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            Interact();
         }
 
         private void LateUpdate()
@@ -210,7 +217,26 @@ namespace StarterAssets
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
                 _cinemachineTargetYaw, 0.0f);
         }
+        private void Interact()
+        {
+            if (_input._fuck)
+                {
+                UIHandler.Instance.ShowActiveQuests();
+                if (!_currentInteractible)
+                {
+                    Debug.Log("nothing is happening");
+                    return;
+                }
+                _currentInteractible.Interact();
+            }
 
+  
+        }
+
+        public void AssignInteractibe(Interactible newInteractible)
+        {
+            _currentInteractible= newInteractible;
+        }
         private void Move()
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed

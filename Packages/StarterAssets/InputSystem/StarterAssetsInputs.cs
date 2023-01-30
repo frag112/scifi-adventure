@@ -12,6 +12,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+		public bool _fuck;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -33,10 +34,13 @@ namespace StarterAssets
 				LookInput(value.Get<Vector2>());
 			}
 		}
-
-		public void OnJump(InputValue value)
+			public void OnJump(InputValue value)
 		{
 			JumpInput(value.isPressed);
+		}
+		public void OnFuck(InputValue value)
+		{
+			FuckInput(value.isPressed);
 		}
 
 		public void OnSprint(InputValue value)
@@ -59,6 +63,10 @@ namespace StarterAssets
 		public void JumpInput(bool newJumpState)
 		{
 			jump = newJumpState;
+		}
+		public void FuckInput(bool newFuckState)
+		{
+			_fuck= newFuckState;
 		}
 
 		public void SprintInput(bool newSprintState)
