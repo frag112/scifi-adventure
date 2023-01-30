@@ -12,7 +12,7 @@ namespace ScifiAdventure
         {
             if (other.CompareTag("Player") && _buttonPressed)
             {
-                _interactible.Interract();
+                _interactible.Interact();
             }
         }
 
