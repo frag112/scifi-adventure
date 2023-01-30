@@ -151,13 +151,15 @@ MonoBehaviour:
   _quests:
   - _state: 0
     _goal:
-      ass: 0
+      _goalType: 0
+      _completed: 0
     _title: fourth quest
     _description: it is fourthquest
     _optionalDescription: can you count 4
   - _state: 0
     _goal:
-      ass: 0
+      _goalType: 0
+      _completed: 0
     _title: fifth quest
     _description: i want to buy a new iphone
     _optionalDescription: its 13 mini
@@ -466,19 +468,22 @@ MonoBehaviour:
   _quests:
   - _state: 0
     _goal:
-      ass: 0
+      _goalType: 0
+      _completed: 0
     _title: first quest
     _description: 'som dialogu '
     _optionalDescription: hey i said som dialogu you dumbass.
   - _state: 0
     _goal:
-      ass: 0
+      _goalType: 0
+      _completed: 0
     _title: second quest
     _description: yo fuck off
     _optionalDescription: simple, just fuck off.
   - _state: 0
     _goal:
-      ass: 0
+      _goalType: 0
+      _completed: 0
     _title: third quest
     _description: go f uself. get lost
     _optionalDescription: 
@@ -29823,6 +29828,41 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1352014396210270, guid: b18f8976219e1754dba4931c56a32810, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517309755593684, guid: b18f8976219e1754dba4931c56a32810, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1542577206270056, guid: b18f8976219e1754dba4931c56a32810, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701979879465336, guid: b18f8976219e1754dba4931c56a32810, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1893659511822568, guid: b18f8976219e1754dba4931c56a32810, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224299844569374416, guid: b18f8976219e1754dba4931c56a32810,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224299844569374416, guid: b18f8976219e1754dba4931c56a32810,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224299844569374416, guid: b18f8976219e1754dba4931c56a32810,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224375188491016300, guid: b18f8976219e1754dba4931c56a32810,
         type: 3}
       propertyPath: m_Pivot.x
@@ -29926,6 +29966,56 @@ PrefabInstance:
     - target: {fileID: 224375188491016300, guid: b18f8976219e1754dba4931c56a32810,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224436454591662870, guid: b18f8976219e1754dba4931c56a32810,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224436454591662870, guid: b18f8976219e1754dba4931c56a32810,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224436454591662870, guid: b18f8976219e1754dba4931c56a32810,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224542993821702638, guid: b18f8976219e1754dba4931c56a32810,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224542993821702638, guid: b18f8976219e1754dba4931c56a32810,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224686447562636416, guid: b18f8976219e1754dba4931c56a32810,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224686447562636416, guid: b18f8976219e1754dba4931c56a32810,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224694594117879528, guid: b18f8976219e1754dba4931c56a32810,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224694594117879528, guid: b18f8976219e1754dba4931c56a32810,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224694594117879528, guid: b18f8976219e1754dba4931c56a32810,
+        type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
