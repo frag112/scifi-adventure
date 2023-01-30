@@ -62,7 +62,7 @@ namespace ScifiAdventure
                     finalLine = "We are not supposed to talk now";
                     break;
             }
-            UIHandler.Instance.ShowDialogue(finalLine);
+           // UIHandler.Instance.ShowDialogue(finalLine);
             TriggerAnimations();
         }
         private void GiveQuest()
@@ -74,7 +74,7 @@ namespace ScifiAdventure
                     if (quest._state == QuestState.NotActive)
                     {
                         quest._state = QuestState.Active;
-                    UIHandler.Instance.ShowDialogue(quest.GiveDescription());
+                   // UIHandler.Instance.ShowDialogue(quest.GiveDescription());
                         _player.PlayerGetQuest(quest);
                         TriggerAnimations();
                     break;

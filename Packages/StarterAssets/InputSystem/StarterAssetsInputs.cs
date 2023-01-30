@@ -1,28 +1,37 @@
+using ScifiAdventure;
+using Unity.VisualScripting;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 #endif
 
 namespace StarterAssets
 {
 	public class StarterAssetsInputs : MonoBehaviour
 	{
-		[Header("Character Input Values")]
-		public Vector2 move;
-		public Vector2 look;
+		//[Header("Character Input Values")]
+		[HideInInspector] public Vector2 move;
+		[HideInInspector] public Vector2 look;
 
-		public bool inventory, interaction,sprint, questList;
+		[HideInInspector]public bool sprint;
+		private bool inventory, interaction, questList, isPaused;
+		private PlayerInput _playerInput;
 
+		//[Header("Movement Settings")]
+		[HideInInspector]public bool analogMovement;
 
-		[Header("Movement Settings")]
-		public bool analogMovement;
+		//[Header("Mouse Cursor Settings")]
+		[HideInInspector]public bool cursorLocked = true;
+		[HideInInspector]public bool cursorInputForLook = true;
 
-		[Header("Mouse Cursor Settings")]
-		public bool cursorLocked = true;
-		public bool cursorInputForLook = true;
+		[Header("UI Inputs")]
+		public bool pause, submit;
+
+        private Interactible _currentInteractible;
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-		public void OnMove(InputValue value)
+        public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
 		}
@@ -34,29 +43,54 @@ namespace StarterAssets
 				LookInput(value.Get<Vector2>());
 			}
 		}
+        public void OnSprint(InputValue value)
+        {
+            SprintInput(value.isPressed);
+        }
 
-		public void OnInteraction(InputValue value)
+        public void OnInteraction(InputValue value)
 		{
-			InteractionInput(value.isPressed);
-		}
-		public void OnShowActiveQuests(InputValue value)
+            if (!_currentInteractible)
+            {
+                return;
+            }
+            _currentInteractible.Interact();
+        }
+		public void OnShowActiveQuests()
 		{
-			ActiveQuestsInput(value.isPressed);
-		}
+            UIHandler.Instance.ShowActiveQuests();
+        }
 
 		public void OnInventory(InputValue value)
 		{
-			InventoryInput(value.isPressed);
+			Debug.Log("its inventorey");
 		}
 
-		public void OnSprint(InputValue value)
+
+        public void OnPause()
+        {
+			if (!isPaused)
+			{
+				Time.timeScale = 0f;
+				SwitchControlScheme("UI Navigation");
+				UIHandler.Instance.ShowHidePauseMenu();
+				isPaused= true;
+			}
+			else
+			{
+				Time.timeScale = 1f;
+				UIHandler.Instance.ShowHidePauseMenu();
+				isPaused= false;
+				SwitchControlScheme("Player");
+			}
+        }
+		public void OnSubmit(InputValue value)
 		{
-			SprintInput(value.isPressed);
+		
+			Debug.Log("i am sumiy");
 		}
 #endif
-
-
-		public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
 		} 
@@ -65,36 +99,32 @@ namespace StarterAssets
 		{
 			look = newLookDirection;
 		}
-
-		public void InventoryInput(bool newInventoryState)
-		{
-			inventory = newInventoryState;
-		}
-		public void ActiveQuestsInput(bool newQuestsUIState)
-		{
-			questList = newQuestsUIState;
-		}
-
-
-        public void InteractionInput(bool newInteractionState)
-		{
-			interaction = newInteractionState;
-		}
-
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
 		}
-
 		private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
 		}
-
 		private void SetCursorState(bool newState)
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
-	}
+
+
+        public void AssignInteractibe(Interactible newInteractible)
+        {
+            _currentInteractible = newInteractible;
+		}
+        public void SwitchControlScheme(string schemeName)
+        {
+            _playerInput.SwitchCurrentActionMap(schemeName);
+        }
+        private void Start()
+        {
+            _playerInput = GetComponent<PlayerInput>();
+        }
+    }
 	
 }

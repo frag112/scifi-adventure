@@ -70,7 +70,7 @@ namespace StarterAssets
 
 
 
-        private Interactible _currentInteractible;
+        
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -94,6 +94,7 @@ namespace StarterAssets
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
+        
 #endif
         private Animator _animator;
         private CharacterController _controller;
@@ -154,9 +155,6 @@ namespace StarterAssets
             GravityPlayer();
             GroundedCheck();
             Move();
-            Interaction();
-            Inventory();
-            ShowQuests();
         }
 
         private void LateUpdate()
@@ -275,38 +273,6 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
         }
-
-        private void Interaction() 
-        {
-            if (_input.interaction)
-            {
-                if (!_currentInteractible)
-                {
-                    return;
-                }
-                _currentInteractible.Interact();
-            }         
-        }
-        public void AssignInteractibe(Interactible newInteractible)
-        {
-            _currentInteractible = newInteractible;
-        }
-
-        private void Inventory() 
-        {
-            if (_input.inventory)
-            {
-                Debug.Log("Inventory");
-            }
-        }
-        private void ShowQuests()
-        {
-            if (_input.questList)
-            {
-                UIHandler.Instance.ShowActiveQuests();
-            }
-        }
-
         private void GravityPlayer()
         {
             if (Grounded)
@@ -334,21 +300,6 @@ namespace StarterAssets
             if (lfAngle > 360f) lfAngle -= 360f;
             return Mathf.Clamp(lfAngle, lfMin, lfMax);
         }
-
-        //private void OnDrawGizmosSelected()
-        //{
-        //    Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
-        //    Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
-
-        //    if (Grounded) Gizmos.color = transparentGreen;
-        //    else Gizmos.color = transparentRed;
-
-        //    // when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
-        //    Gizmos.DrawSphere(
-        //        new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
-        //        GroundedRadius);
-        //}
-
         private void OnFootstep(AnimationEvent animationEvent)
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)

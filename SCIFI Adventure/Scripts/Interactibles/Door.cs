@@ -1,23 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 namespace ScifiAdventure
 {
     [RequireComponent(typeof(Animator))]
-    public class Door : Interactible
+    public class Door : ActionItem
     {
         private Animator _animator;
+        public bool closed = false;
+
         private void OnEnable()
         {
-            _animator= GetComponent<Animator>();
+            _animator = GetComponent<Animator>();
             _audioSource = GetComponent<AudioSource>();
         }
-        
+
         protected override void InterractAction()
         {
-            if (_isInteractible)
+            if (!closed)
             {
                 _animator.SetBool("character_nearby", true);
             }
@@ -26,10 +25,10 @@ namespace ScifiAdventure
                 PlaySound(_noAccessSound);
             }
         }
+
         protected override void LeaveAction()
         {
-            _animator.SetBool("character_nearby", false);        
+            _animator.SetBool("character_nearby", false);
         }
     }
 }
-

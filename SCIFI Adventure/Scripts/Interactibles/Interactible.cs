@@ -19,7 +19,7 @@ namespace ScifiAdventure
         {
             if (other.CompareTag("Player"))
             {
-                other.GetComponent<ThirdPersonController>().AssignInteractibe(this);
+                other.GetComponent<StarterAssetsInputs>().AssignInteractibe(this);
             }
         }
 
@@ -27,8 +27,9 @@ namespace ScifiAdventure
         {
             if (other.CompareTag("Player"))
             {
-                other.GetComponent<ThirdPersonController>().AssignInteractibe(null);
+                other.GetComponent<StarterAssetsInputs>().AssignInteractibe(null);
                 SetIntaractState(true);
+                Leave();
             }
         }
 
