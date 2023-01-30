@@ -58,12 +58,15 @@ public class UIHandler : MonoBehaviour
         }
         public void ShowActiveQuests()
         {
-            _questAnimator.SetBool("Active", true);
-            Invoke("HideQuests", 10);
-        }
-        void HideActiveQuests()
-        {
-            _dialogueAnimator.SetBool("Active", false);
+            if (_questAnimator.GetBool("Active"))
+            {
+                this._questAnimator.SetBool("Active", false);
+            }
+            else
+            {
+                _questAnimator.SetBool("Active", true);
+            }
+
         }
     }
 }

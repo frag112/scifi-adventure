@@ -11,9 +11,8 @@ namespace StarterAssets
 		public Vector2 move;
 		public Vector2 look;
 
-		public bool inventory;
-		public bool interaction;
-		public bool sprint;
+		public bool inventory, interaction,sprint, questList;
+
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -39,6 +38,10 @@ namespace StarterAssets
 		public void OnInteraction(InputValue value)
 		{
 			InteractionInput(value.isPressed);
+		}
+		public void OnShowActiveQuests(InputValue value)
+		{
+			ActiveQuestsInput(value.isPressed);
 		}
 
 		public void OnInventory(InputValue value)
@@ -67,8 +70,13 @@ namespace StarterAssets
 		{
 			inventory = newInventoryState;
 		}
+		public void ActiveQuestsInput(bool newQuestsUIState)
+		{
+			questList = newQuestsUIState;
+		}
 
-		public void InteractionInput(bool newInteractionState)
+
+        public void InteractionInput(bool newInteractionState)
 		{
 			interaction = newInteractionState;
 		}

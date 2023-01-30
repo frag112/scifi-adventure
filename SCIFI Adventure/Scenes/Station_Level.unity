@@ -14453,6 +14453,7 @@ MonoBehaviour:
   inventory: 0
   interaction: 0
   sprint: 0
+  questList: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
