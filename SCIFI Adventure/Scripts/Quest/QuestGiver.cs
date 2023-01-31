@@ -6,63 +6,82 @@ using UnityEngine;
 namespace ScifiAdventure
 {
     [RequireComponent(typeof(Animator))]
-    public class QuestGiver : Interactible
+    public class QuestGiver : NPC
     {
         [Header("Quest section")]
         [SerializeField] protected bool _canTalk;
         [Tooltip("List of quests this NPC has")]
         [SerializeField] private List<Quest> _quests;
-        [Header("NPC own components section")]
-        [SerializeField]private AudioSource _mouth;
-        [SerializeField] private AudioClip _speech;
 
         [SerializeField] private Player _player;
-
-        private Animator _animator;
-
-        private void OnEnable()
+        [SerializeField] private string _noQuestsDialogue;
+        public override void Interact()
         {
-            _animator= GetComponent<Animator>();
-        }
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Player"))
+            var iHaveMoreQuests = false;
+            foreach(Quest quest in _quests)
             {
-                if (_player.CanGetNewQuest())
+                if (quest._state == QuestState.NotActive)
                 {
-                    GiveQuest();
-                    return;
+                    iHaveMoreQuests = true;
+                    break;
                 }
-                GiveHelpWithQuests();
             }
+            if (_player.CanGetNewQuest() && iHaveMoreQuests)
+            {
+                GiveQuest();
+                return;
+            }
+            GiveHelpWithQuests();
         }
         private void GiveHelpWithQuests()
         {
-            List <string> descriptions= new List<string>();
-            string finalLine = "";
+            List<string[]> dialogues = new List<string[]>();
+
             foreach (var quest in _quests)
             {
                 if (quest._state == QuestState.Active)
                 {
-                    descriptions.Add(quest.GiveOptionalDescription());
+                    dialogues.Add(quest.GiveOptionalDialogue());
                 }
             }
-            switch (descriptions.Count)
+            var combinedDialogues = new string[1];
+            switch (dialogues.Count)
             {
                 case 0:
-                    finalLine = "Talk with the other guy";
+                    combinedDialogues[0] = _noQuestsDialogue;
+                    //TriggerAnimations(); //bad dialogue audio
                     break;
                 case 1:
-                    finalLine = ($"Like I said, you need to do this.{descriptions[0]} Come back, when you finish.");
+                    combinedDialogues = new string[dialogues[0].Length + 2];
+                    combinedDialogues[0] = "So, this is wahat you have to do.";
+                    for(int i = 0; i < dialogues[0].Length; i++)
+                    {
+                        combinedDialogues[i+1] = dialogues[0][i];
+                    }
+                    combinedDialogues[dialogues[0].Length + 1] = "Come back, when you finish.";
                     break;
                 case 2:
-                    finalLine = ($"Okay.First - {descriptions[0]} Then, {descriptions[1]} It is not so hard, you know.");
+                    combinedDialogues = new string[dialogues[0].Length + 3+ dialogues[1].Length];
+                    combinedDialogues[0] = "In case you have forgotten, your first task is:";
+                        for (int i = 0; i < dialogues[0].Length; i++)
+                        {
+                            combinedDialogues[i + 1] = dialogues[0][i];
+                        }
+                    combinedDialogues[dialogues[0].Length + 1] = "And another one:";
+                    for (int i = 0; i < dialogues[1].Length; i++)
+                    {
+                        combinedDialogues[i + 2 + dialogues[0].Length] = dialogues[1][i];
+                    }
+
+                    combinedDialogues[dialogues[0].Length + 2 + dialogues[1].Length] = "Looks like a quite intersting adveture, heh.";
+                    //finalLine = ($"Okay.First - {descriptions[0]} Then, {descriptions[1]} It is not so hard, you know.");
                     break;
                 default:
-                    finalLine = "We are not supposed to talk now";
+                    combinedDialogues[0] = "You not supposed to see this line, I guess the game is broken. Contact creators for help";
                     break;
             }
-           // UIHandler.Instance.ShowDialogue(finalLine);
+
+            UIHandler.Instance.RecieveDialogueLines(combinedDialogues);
             TriggerAnimations();
         }
         private void GiveQuest()
@@ -74,22 +93,13 @@ namespace ScifiAdventure
                     if (quest._state == QuestState.NotActive)
                     {
                         quest._state = QuestState.Active;
-                   // UIHandler.Instance.ShowDialogue(quest.GiveDescription());
+                   UIHandler.Instance.RecieveDialogueLines(quest.GiveDialogue());
                         _player.PlayerGetQuest(quest);
                         TriggerAnimations();
                     break;
                     }
                 }
 
-        }
-        private void TriggerAnimations()
-        {
-            _animator.SetTrigger("Talking");
-
-            if (!_mouth.isPlaying)
-            {
-                _mouth.PlayOneShot(_speech);
-            }
         }
 
         private void CanTalkNow()

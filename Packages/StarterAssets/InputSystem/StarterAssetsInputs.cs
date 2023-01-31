@@ -72,7 +72,7 @@ namespace StarterAssets
 			if (!isPaused)
 			{
 				Time.timeScale = 0f;
-				SwitchControlScheme("UI Navigation");
+                SwitchActionControl("UI Navigation");
 				UIHandler.Instance.ShowHidePauseMenu();
 				isPaused= true;
 			}
@@ -81,14 +81,22 @@ namespace StarterAssets
 				Time.timeScale = 1f;
 				UIHandler.Instance.ShowHidePauseMenu();
 				isPaused= false;
-				SwitchControlScheme("Player");
+                SwitchActionControl("Player");
 			}
         }
 		public void OnSubmit(InputValue value)
 		{
 		
-			Debug.Log("i am sumiy");
+			//Debug.Log("i am sumiy");
 		}
+        public void OnNextDialogue()
+        {
+			var currentActionMap = _playerInput.currentActionMap.name;
+            if(_playerInput.currentActionMap.name == "Dialogue Navigation")
+			{
+				UIHandler.Instance.ContinueDialogue();
+			}
+        }
 #endif
         public void MoveInput(Vector2 newMoveDirection)
 		{
@@ -117,7 +125,7 @@ namespace StarterAssets
         {
             _currentInteractible = newInteractible;
 		}
-        public void SwitchControlScheme(string schemeName)
+        public void SwitchActionControl(string schemeName)
         {
             _playerInput.SwitchCurrentActionMap(schemeName);
         }

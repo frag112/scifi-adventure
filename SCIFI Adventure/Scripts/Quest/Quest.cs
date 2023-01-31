@@ -9,15 +9,16 @@ namespace ScifiAdventure
     {
         public QuestState _state;
         [SerializeField] public QuestGoal _goal;
-        [SerializeField] private string _title, _description, _optionalDescription;
+        [SerializeField] private string _title, _description;
+        [SerializeField] private string[] _dialogue, _optionalDialogue;
 
-        public string GiveDescription()
+        public string[] GiveDialogue()
         {
-            return _description;
+            return _dialogue;
         }
-        public string GiveOptionalDescription()
+        public string[] GiveOptionalDialogue()
         {
-            return _optionalDescription;
+            return _optionalDialogue;
         }
         public string GiveTitle()
         {

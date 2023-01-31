@@ -47,7 +47,7 @@ public class UIHandler : MonoBehaviour
         public void ShowDialogue()
         {
             _isDialog= true;
-            _player.SwitchControlScheme("UI Navigation");
+            _player.SwitchActionControl("Dialogue Navigation");
             _dialogueText.text = _dialogueLines[_dialogueIndex];
             _dialogueAnimator.SetBool("Active", true);
             
@@ -63,7 +63,7 @@ public class UIHandler : MonoBehaviour
             else
             {
                 _dialogueAnimator.SetBool("Active", false);
-                _player.SwitchControlScheme("Player");
+                _player.SwitchActionControl("Player");
                 _isDialog= false;
             }
         }
