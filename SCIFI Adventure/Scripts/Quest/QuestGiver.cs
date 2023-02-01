@@ -44,44 +44,31 @@ namespace ScifiAdventure
                     dialogues.Add(quest.GiveOptionalDialogue());
                 }
             }
-            var combinedDialogues = new string[1];
+            var combinedDialogues = new List<string>();
             switch (dialogues.Count)
             {
                 case 0:
-                    combinedDialogues[0] = _noQuestsDialogue;
+                    combinedDialogues.Add(_noQuestsDialogue);
                     //TriggerAnimations(); //bad dialogue audio
                     break;
                 case 1:
-                    combinedDialogues = new string[dialogues[0].Length + 2];
-                    combinedDialogues[0] = "So, this is wahat you have to do.";
-                    for(int i = 0; i < dialogues[0].Length; i++)
-                    {
-                        combinedDialogues[i+1] = dialogues[0][i];
-                    }
-                    combinedDialogues[dialogues[0].Length + 1] = "Come back, when you finish.";
+                    combinedDialogues.Add("So, this is wahat you have to do:");
+                    combinedDialogues.AddRange(dialogues[0]);
+                    combinedDialogues.Add("Come back, when you finish.");
                     break;
                 case 2:
-                    combinedDialogues = new string[dialogues[0].Length + 3+ dialogues[1].Length];
-                    combinedDialogues[0] = "In case you have forgotten, your first task is:";
-                        for (int i = 0; i < dialogues[0].Length; i++)
-                        {
-                            combinedDialogues[i + 1] = dialogues[0][i];
-                        }
-                    combinedDialogues[dialogues[0].Length + 1] = "And another one:";
-                    for (int i = 0; i < dialogues[1].Length; i++)
-                    {
-                        combinedDialogues[i + 2 + dialogues[0].Length] = dialogues[1][i];
-                    }
-
-                    combinedDialogues[dialogues[0].Length + 2 + dialogues[1].Length] = "Looks like a quite intersting adveture, heh.";
-                    //finalLine = ($"Okay.First - {descriptions[0]} Then, {descriptions[1]} It is not so hard, you know.");
+                    combinedDialogues.Add("In case you have forgotten, your first task is:");
+                    combinedDialogues.AddRange(dialogues[0]);
+                    combinedDialogues.Add("And another one:");
+                    combinedDialogues.AddRange(dialogues[1]);
+                    combinedDialogues.Add("Looks like a quite intersting adveture, heh.");
                     break;
                 default:
-                    combinedDialogues[0] = "You not supposed to see this line, I guess the game is broken. Contact creators for help";
+                    combinedDialogues.Add("You not supposed to see this line, I guess the game is broken. Contact creators for help");
                     break;
             }
 
-            UIHandler.Instance.RecieveDialogueLines(combinedDialogues);
+            UIHandler.Instance.RecieveDialogueLines(combinedDialogues.ToArray());
             TriggerAnimations();
         }
         private void GiveQuest()
