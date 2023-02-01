@@ -62,10 +62,14 @@ public class UIHandler : MonoBehaviour
             }
             else
             {
-                _dialogueAnimator.SetBool("Active", false);
-                _player.SwitchActionControl("Player");
-                _isDialog= false;
+                SkipDialogue();
             }
+        }
+        public void SkipDialogue()
+        {
+            _dialogueAnimator.SetBool("Active", false);
+            _player.SwitchActionControl("Player");
+            _isDialog = false;
         }
         public void UpdateQuestList(List<Quest> quests)
         {

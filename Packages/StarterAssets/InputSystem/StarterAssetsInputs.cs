@@ -97,6 +97,13 @@ namespace StarterAssets
 				UIHandler.Instance.ContinueDialogue();
 			}
         }
+		public void OnSkipDialogue()
+		{
+            if (_playerInput.currentActionMap.name == "Dialogue Navigation")
+            {
+                UIHandler.Instance.SkipDialogue();
+            }
+		}
 #endif
         public void MoveInput(Vector2 newMoveDirection)
 		{
