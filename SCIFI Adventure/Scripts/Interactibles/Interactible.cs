@@ -66,7 +66,7 @@ namespace ScifiAdventure
         {
             if (!_audioSource.isPlaying)
             {
-                _audioSource.PlayOneShot(sound);
+                this._audioSource.PlayOneShot(sound);
             }
         }
     }
