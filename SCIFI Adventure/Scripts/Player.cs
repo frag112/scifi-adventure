@@ -8,6 +8,8 @@ namespace ScifiAdventure
         [SerializeField] private List<Quest> _quests;
         [SerializeField] private List<Item> _items;
         [SerializeField] private UIHandler _uiHandler;
+        public int _inventorySlots;
+        [SerializeField] private int _inventoryOccupiedSlots;
         public void PlayerGetQuest(Quest quest)
         {
             if (CanGetNewQuest()) 
@@ -20,9 +22,15 @@ namespace ScifiAdventure
         {
             return (_quests.Count < 2);
         }
-        public void PlayerGetsItem(Item item)
+        public bool PlayerGetsItem(Item item)
         {
-            _items.Add(item);
+            if (_inventoryOccupiedSlots < _inventorySlots)
+            {
+                _items.Add(item);
+                _inventoryOccupiedSlots++;
+                return true;
+            }
+            return false;
         }
     }
 }
