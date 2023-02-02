@@ -9,7 +9,6 @@ namespace ScifiAdventure
     public class QuestGiver : NPC
     {
         [Header("Quest section")]
-        [SerializeField] protected bool _canTalk;
         [Tooltip("List of quests this NPC has")]
         [SerializeField] private List<Quest> _quests;
 
@@ -17,18 +16,26 @@ namespace ScifiAdventure
         [SerializeField] private string _noQuestsDialogue;
         public override void Interact()
         {
-            var iHaveMoreQuests = false;
+            foreach (var quest in _quests)
+            {
+                if (quest.GetState() == QuestState.Completed)
+                {
+                    DisableQuest(quest);
+                    return;
+                }
+            }
+            Quest nextQuest = null;
             foreach(Quest quest in _quests)
             {
-                if (quest._state == QuestState.NotActive)
+                if (quest.GetState() == QuestState.NotActive)
                 {
-                    iHaveMoreQuests = true;
+                    nextQuest = quest;
                     break;
                 }
             }
-            if (_player.CanGetNewQuest() && iHaveMoreQuests)
+            if (_player.CanGetNewQuest() && nextQuest !=null)
             {
-                GiveQuest();
+                GiveQuest(nextQuest);
                 return;
             }
             GiveHelpWithQuests();
@@ -39,7 +46,7 @@ namespace ScifiAdventure
 
             foreach (var quest in _quests)
             {
-                if (quest._state == QuestState.Active)
+                if (quest.GetState() == QuestState.Active)
                 {
                     dialogues.Add(quest.GiveOptionalDialogue());
                 }
@@ -52,7 +59,7 @@ namespace ScifiAdventure
                     //TriggerAnimations(); //bad dialogue audio
                     break;
                 case 1:
-                    combinedDialogues.Add("So, this is wahat you have to do:");
+                    combinedDialogues.Add("So, this is what you have to do:");
                     combinedDialogues.AddRange(dialogues[0]);
                     combinedDialogues.Add("Come back, when you finish.");
                     break;
@@ -71,30 +78,19 @@ namespace ScifiAdventure
             UIHandler.Instance.RecieveDialogueLines(combinedDialogues.ToArray());
             TriggerAnimations();
         }
-        private void GiveQuest()
+        private void GiveQuest(Quest quest)
         {
-
-                foreach (var quest in _quests)
-                {
-
-                    if (quest._state == QuestState.NotActive)
-                    {
-                        quest._state = QuestState.Active;
+                        quest.StartQuest();
                    UIHandler.Instance.RecieveDialogueLines(quest.GiveDialogue());
                         _player.PlayerGetQuest(quest);
                         TriggerAnimations();
-                    break;
-                    }
-                }
-
         }
-
-        private void CanTalkNow()
+        private void DisableQuest(Quest quest)
         {
-            _canTalk = true;
+            UIHandler.Instance.RecieveDialogueLines(quest.GiveFinishDialogue());
+            quest.Disable();
+            TriggerAnimations();
         }
     }
 
 }
-
-

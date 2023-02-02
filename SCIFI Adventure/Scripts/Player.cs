@@ -32,6 +32,23 @@ namespace ScifiAdventure
             }
             return false;
         }
+        public bool PlayerGivesItem(Item item)
+        {
+            foreach (var currentItem in _items)
+            {
+                if(currentItem == item)
+                {
+                _items.Remove(currentItem);
+                    _inventoryOccupiedSlots--;
+                    return true;
+                }
+            }
+            return false;
+        }
+        public void PlayerCombinesItems(Item item1, Item item2)
+        {
+            item1.CombinedWith(item2);
+        }
     }
 }
 
