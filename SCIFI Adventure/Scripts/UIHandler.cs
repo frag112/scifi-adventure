@@ -9,7 +9,7 @@ namespace ScifiAdventure
 public class UIHandler : MonoBehaviour
 {
         public static UIHandler Instance { get; private set; }
-        [SerializeField] private GameObject _actionPanel, _pauseMenu;
+        [SerializeField] private GameObject _actionPanel, _pauseMenu, _inventoryMenu;
         [SerializeField] private Animator _dialogueAnimator, _questAnimator, _actionAnimator;
         private TMP_Text _dialogueText;
         private int _dialogueIndex;
@@ -89,6 +89,15 @@ public class UIHandler : MonoBehaviour
                 _questAnimator.SetBool("Active", true);
             }
 
+        }
+        public void HideInventory()
+        {
+            _inventoryMenu.SetActive(false);
+        }
+        public void ShowInventory()
+        {
+            _inventoryMenu.SetActive(true);
+            
         }
         public void ShowHidePauseMenu()
         {

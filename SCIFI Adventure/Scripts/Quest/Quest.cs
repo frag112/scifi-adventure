@@ -60,6 +60,11 @@ namespace ScifiAdventure
         {
             return _state;
         }
+        /// public void remove "this" item form player inventory on completion
+        /// track player progress, or trigger completion
+
+
+
     }
 
     public enum QuestState

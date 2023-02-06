@@ -4,6 +4,8 @@ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
+using static UnityEditor.Experimental.GraphView.GraphView;
+
 #endif
 
 namespace StarterAssets
@@ -59,12 +61,13 @@ namespace StarterAssets
 		public void OnShowActiveQuests()
 		{
             UIHandler.Instance.ShowActiveQuests();
-        }
+		}
 
 		public void OnInventory(InputValue value)
 		{
-			Debug.Log("its inventorey");
-		}
+            SwitchActionControl("UI Navigation");
+			UIHandler.Instance.ShowInventory();
+        }
 
 
         public void OnPause()
@@ -89,6 +92,15 @@ namespace StarterAssets
 		
 			//Debug.Log("i am sumiy");
 		}
+		public void OnCancel()
+		{
+            var currentActionMap = _playerInput.currentActionMap.name;
+            if (_playerInput.currentActionMap.name == "UI Navigation")
+            {
+                UIHandler.Instance.HideInventory();
+				SwitchActionControl("Player");
+            }
+        }
         public void OnNextDialogue()
         {
 			var currentActionMap = _playerInput.currentActionMap.name;
@@ -124,7 +136,7 @@ namespace StarterAssets
 		}
 		private void SetCursorState(bool newState)
 		{
-			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+			//Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
 
 
