@@ -75,7 +75,14 @@ public class UIHandler : MonoBehaviour
         {
             for (int i = 0; i < quests.Count; i++)
             {
-                _questTexts[i].text = quests[i].GiveTitle();
+                if (quests[i].GiveTitle()!= null)
+                {
+                    _questTexts[i].text = quests[i].GiveTitle();
+                }
+                else
+                {
+                    _questTexts[i].text = "No Active Quests";
+                }
             }
         }
         public void ShowActiveQuests()

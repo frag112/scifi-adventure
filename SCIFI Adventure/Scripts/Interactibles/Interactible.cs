@@ -9,6 +9,7 @@ namespace ScifiAdventure
         [SerializeField] protected bool _isInteractible;
         [SerializeField] protected AudioClip _interractSound, _noAccessSound;
         protected AudioSource _audioSource;
+        public Quest _goal;
 
         private void OnEnable()
         {
@@ -42,6 +43,7 @@ namespace ScifiAdventure
         {
             if (_isInteractible)
             {
+                
                 InterractAction();
                 SetIntaractState(false);
             }

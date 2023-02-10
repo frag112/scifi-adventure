@@ -1,19 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 namespace ScifiAdventure
 {
-    [System.Serializable]
-    public class Quest
+    //[System.Serializable]
+    [CreateAssetMenu(fileName = "New Quest", menuName = "Quest")]
+    public class Quest : ScriptableObject
     {
-        [SerializeField] private QuestState _state;
-        [SerializeField] public QuestGoal _goal;
         [SerializeField] private string _title;
         [SerializeField] private string[] _dialogue, _optionalDialogue, _finishDialogue;
-        [SerializeField] private List<GameObject> _activeWithQuest;
-        [SerializeField] private List<GameObject> _disableWithQuestEnd;
-        [SerializeField] private List<GameObject> _disableWithQuest;
+        [SerializeField] private bool _done;
 
         public string[] GiveDialogue()
         {
@@ -31,40 +29,10 @@ namespace ScifiAdventure
         {
             return _title;
         }
-        public void StartQuest()
-        {
-            _state = QuestState.Active;
-            foreach (var go in _activeWithQuest)
-            {
-                go.SetActive(true);
-            }
-            foreach (var go in _disableWithQuest)
-            {
-                go.SetActive(false);
-            }
-        }
-
         public void Complete()
         {
-            _state = QuestState.Completed;
-            foreach (var go in _disableWithQuestEnd)
-            {
-                go.SetActive(false);
-            }
+            _done= true;
         }
-        public void Disable()
-        {
-            _state = QuestState.Disabled;
-        }
-        public QuestState GetState()
-        {
-            return _state;
-        }
-        /// public void remove "this" item form player inventory on completion
-        /// track player progress, or trigger completion
-
-
-
     }
 
     public enum QuestState
@@ -75,4 +43,4 @@ namespace ScifiAdventure
         Disabled
     }
 }
-
+// make qestwrapper not monobehavior and attach it as array to quest npc

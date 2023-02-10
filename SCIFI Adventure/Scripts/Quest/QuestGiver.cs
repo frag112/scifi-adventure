@@ -10,7 +10,7 @@ namespace ScifiAdventure
     {
         [Header("Quest section")]
         [Tooltip("List of quests this NPC has")]
-        [SerializeField] private List<Quest> _quests;
+        [SerializeField] private List<QuestWrapper> _quests;
 
         [SerializeField] private Player _player;
         [SerializeField] private string _noQuestsDialogue;
@@ -24,8 +24,8 @@ namespace ScifiAdventure
                     return;
                 }
             }
-            Quest nextQuest = null;
-            foreach(Quest quest in _quests)
+            QuestWrapper nextQuest = null;
+            foreach(QuestWrapper quest in _quests)
             {
                 if (quest.GetState() == QuestState.NotActive)
                 {
@@ -48,7 +48,7 @@ namespace ScifiAdventure
             {
                 if (quest.GetState() == QuestState.Active)
                 {
-                    dialogues.Add(quest.GiveOptionalDialogue());
+                    dialogues.Add(quest._quest.GiveOptionalDialogue());
                 }
             }
             var combinedDialogues = new List<string>();
@@ -78,17 +78,19 @@ namespace ScifiAdventure
             UIHandler.Instance.RecieveDialogueLines(combinedDialogues.ToArray());
             TriggerAnimations();
         }
-        private void GiveQuest(Quest quest)
+        private void GiveQuest(QuestWrapper quest)
         {
                         quest.StartQuest();
-                   UIHandler.Instance.RecieveDialogueLines(quest.GiveDialogue());
-                        _player.PlayerGetQuest(quest);
+                   UIHandler.Instance.RecieveDialogueLines(quest._quest.GiveDialogue());
+                        _player.PlayerGetQuest(quest._quest);
                         TriggerAnimations();
         }
-        private void DisableQuest(Quest quest)
+        private void DisableQuest(QuestWrapper quest)
         {
-            UIHandler.Instance.RecieveDialogueLines(quest.GiveFinishDialogue());
+            UIHandler.Instance.RecieveDialogueLines(quest._quest.GiveFinishDialogue());
             quest.Disable();
+            _player.PlayerFinishQuest(quest._quest);
+            //_player.PlayerGivesItem(item);
             TriggerAnimations();
         }
     }

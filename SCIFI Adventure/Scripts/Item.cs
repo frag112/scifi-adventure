@@ -10,7 +10,11 @@ namespace ScifiAdventure
         [SerializeField] private string _name, _description;
         [SerializeField] private Sprite _itemIcon;
         [SerializeField] private Item _itemCombineWith, _resultItem;
-
+        [SerializeField] private Quest _requiredForQuest;
+        public Quest RequiredForQuest()
+        {
+            return _requiredForQuest;
+        }
         public Item PickedUp()
         {
             return this;

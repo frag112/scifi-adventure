@@ -18,6 +18,11 @@ namespace ScifiAdventure
                 _uiHandler.UpdateQuestList(_quests);
             }
         }
+        public void PlayerFinishQuest(Quest quest)
+        {
+            _quests.Remove(quest);
+            _uiHandler.UpdateQuestList(_quests);
+        }
         public bool CanGetNewQuest()
         {
             return (_quests.Count < 2);
@@ -28,9 +33,29 @@ namespace ScifiAdventure
             {
                 _items.Add(item);
                 _inventoryOccupiedSlots++;
+                CheckActiveQests(item.RequiredForQuest());
                 return true;
             }
             return false;
+        }
+        public bool PlayerInteracts(Interactible interactible)
+        {
+            if (interactible._goal != null)
+            {
+                CheckActiveQests(interactible._goal);
+                return true;
+            }
+            return false;
+        }
+        public void CheckActiveQests(Quest goal)
+        {
+            foreach (var quest in _quests)
+            {
+                if (quest == goal)
+                {
+                    quest.Complete(); // let quest giver check this value
+                }
+            }
         }
         public bool PlayerGivesItem(Item item)
         {
@@ -45,9 +70,14 @@ namespace ScifiAdventure
             }
             return false;
         }
+        // player cannot combine items if the inventory is full
         public void PlayerCombinesItems(Item item1, Item item2)
         {
-            item1.CombinedWith(item2);
+            if (PlayerGetsItem(item1.CombinedWith(item2)))
+            {
+                PlayerGivesItem(item1);
+                PlayerGivesItem(item2);
+            }
         }
     }
 }
