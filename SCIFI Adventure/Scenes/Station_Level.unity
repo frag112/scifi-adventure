@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.01869084, g: 0.01514087, b: 0.050512545, a: 1}
+  m_IndirectSpecularColor: {r: 0.018690232, g: 0.015141356, b: 0.05051764, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5055,36 +5055,17 @@ MonoBehaviour:
   _isInteractible: 0
   _interractSound: {fileID: 8300000, guid: 707d533b18a364142897701cc3b4027e, type: 3}
   _noAccessSound: {fileID: 8300000, guid: d786774c25f284b79bcda64a1571c979, type: 3}
+  _goal: {fileID: 0}
   dialogue: []
   _mouth: {fileID: 1623047772}
   _quests:
   - _state: 0
-    _goal:
-      _goalType: 0
-      _completed: 0
-    _title: Bring Sharkman some soda
-    _dialogue:
-    - Hey Ellen, you woke!
-    - Bring me soda please
-    _optionalDialogue:
-    - get soda on the living floor, near the stairs
-    _finishDialogue: []
+    _quest: {fileID: 0}
     _activeWithQuest: []
     _disableWithQuestEnd: []
     _disableWithQuest: []
   - _state: 0
-    _goal:
-      _goalType: 1
-      _completed: 0
-    _title: Get Battaries from storage
-    _dialogue:
-    - Generators subsystem is down
-    - I think we have some battaries in the storage
-    - Get the Key Card if its locked
-    _optionalDialogue:
-    - get the battery from the storage
-    - It is on the lower floor
-    _finishDialogue: []
+    _quest: {fileID: 0}
     _activeWithQuest: []
     _disableWithQuestEnd: []
     _disableWithQuest: []
@@ -6901,12 +6882,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102725764}
   m_Mesh: {fileID: 4300000, guid: 9036409ea7a8c974f80d52b06c8a4af8, type: 3}
---- !u!82 &106315151 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 7374000235875963729, guid: cdf6aa8021df0fc49a26fafcecaf7475,
-    type: 3}
-  m_PrefabInstance: {fileID: 7374000235982270174}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &106635825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29829,6 +29804,7 @@ MonoBehaviour:
   _isInteractible: 1
   _interractSound: {fileID: 8300000, guid: 0fcd692c64aaf4ac7aecc76ee212893c, type: 3}
   _noAccessSound: {fileID: 8300000, guid: 20b36408ef0bfce45b7d4010cc76e7de, type: 3}
+  _goal: {fileID: 0}
   _lines:
   - Ugh! Damn, who would drink that?
 --- !u!4 &781169658 stripped
@@ -32155,23 +32131,12 @@ MonoBehaviour:
   _isInteractible: 1
   _interractSound: {fileID: 8300000, guid: 0d494c2c0a97b4fdc8de4ad7f2e44f43, type: 3}
   _noAccessSound: {fileID: 8300000, guid: ae424b24e594048429a4a2bed2eeb897, type: 3}
+  _goal: {fileID: 0}
   dialogue: []
-  _mouth: {fileID: 106315151}
+  _mouth: {fileID: 910955974}
   _quests:
   - _state: 0
-    _goal:
-      _goalType: 4
-      _completed: 0
-    _title: Find Sugar
-    _dialogue:
-    - i need sugar for my coffee
-    - and i need the coffee by the way
-    - I left it on my desk
-    _optionalDialogue:
-    - find my coffee
-    - and sugar
-    _finishDialogue:
-    - You are man man! Thanks for my coffee
+    _quest: {fileID: 11400000, guid: 79395a463a53e4446bf93ae5025244b6, type: 2}
     _activeWithQuest:
     - {fileID: 5326772293101348024}
     _disableWithQuestEnd: []
@@ -32192,6 +32157,102 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.25613165, y: 1.734911, z: 0.3383937}
   m_Center: {x: -0.03136523, y: 0.9214425, z: -0.081015214}
+--- !u!82 &910955974
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910955967}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &915025454 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 465744, guid: f3a954679d4d04b49953424fc6bf526c,
@@ -62561,6 +62622,7 @@ MonoBehaviour:
   _isInteractible: 1
   _interractSound: {fileID: 0}
   _noAccessSound: {fileID: 0}
+  _goal: {fileID: 0}
 --- !u!82 &1454699674
 AudioSource:
   m_ObjectHideFlags: 0
@@ -109228,7 +109290,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _mouth
       value: 
-      objectReference: {fileID: 106315151}
+      objectReference: {fileID: 0}
     - target: {fileID: 7374000236300762283, guid: cdf6aa8021df0fc49a26fafcecaf7475,
         type: 3}
       propertyPath: m_RootOrder
