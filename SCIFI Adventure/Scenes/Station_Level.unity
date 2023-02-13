@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.018690232, g: 0.015141356, b: 0.05051764, a: 1}
+  m_IndirectSpecularColor: {r: 0.01869084, g: 0.01514087, b: 0.050512545, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -32142,6 +32142,18 @@ MonoBehaviour:
     _disableWithQuestEnd: []
     _disableWithQuest:
     - {fileID: 779663437}
+  - _state: 0
+    _quest: {fileID: 11400000, guid: 21d031a791f05c14a9bc61a1a2fecec1, type: 2}
+    _activeWithQuest: []
+    _disableWithQuestEnd: []
+    _disableWithQuest: []
+  - _state: 0
+    _quest: {fileID: 11400000, guid: 9ab531884b1063a4abc4e3b5df2f6fa1, type: 2}
+    _activeWithQuest:
+    - {fileID: 1454699672}
+    _disableWithQuestEnd:
+    - {fileID: 1454699672}
+    _disableWithQuest: []
   _player: {fileID: 772861312}
   _noQuestsDialogue: I dont have any work, enjoy your spare time
 --- !u!65 &910955973
@@ -62606,7 +62618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1454699673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62620,9 +62632,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isInteractible: 1
-  _interractSound: {fileID: 0}
-  _noAccessSound: {fileID: 0}
-  _goal: {fileID: 0}
+  _interractSound: {fileID: 8300000, guid: 96b6650a22f2cb341a4bbb635f9af634, type: 3}
+  _noAccessSound: {fileID: 8300000, guid: 20b36408ef0bfce45b7d4010cc76e7de, type: 3}
+  _goal: {fileID: 11400000, guid: 9ab531884b1063a4abc4e3b5df2f6fa1, type: 2}
+  _player: {fileID: 772861312}
 --- !u!82 &1454699674
 AudioSource:
   m_ObjectHideFlags: 0

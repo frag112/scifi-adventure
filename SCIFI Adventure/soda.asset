@@ -20,4 +20,4 @@ MonoBehaviour:
   - find my soda
   _finishDialogue:
   - Thank you for my soda
-  _done: 1
+  _done: 0
