@@ -17,3 +17,4 @@ MonoBehaviour:
   _itemIcon: {fileID: 21300000, guid: 0d6887c5e31a67d4c9c3988379769ec4, type: 3}
   _itemCombineWith: {fileID: 11400000, guid: 74620ca2fcc542b488a988a841cefbc0, type: 2}
   _resultItem: {fileID: 11400000, guid: 501c96b06b80ae643a9c65cebab1ea53, type: 2}
+  _requiredForQuest: {fileID: 11400000, guid: 79395a463a53e4446bf93ae5025244b6, type: 2}

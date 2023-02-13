@@ -11,7 +11,7 @@ namespace ScifiAdventure
     {
         [SerializeField] private string _title;
         [SerializeField] private string[] _dialogue, _optionalDialogue, _finishDialogue;
-        [SerializeField] private bool _done;
+        [SerializeField] public bool _done;
 
         public string[] GiveDialogue()
         {
@@ -28,10 +28,6 @@ namespace ScifiAdventure
         public string GiveTitle()
         {
             return _title;
-        }
-        public void Complete()
-        {
-            _done= true;
         }
     }
 

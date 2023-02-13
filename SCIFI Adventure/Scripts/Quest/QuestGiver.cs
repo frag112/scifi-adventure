@@ -18,7 +18,7 @@ namespace ScifiAdventure
         {
             foreach (var quest in _quests)
             {
-                if (quest.GetState() == QuestState.Completed)
+                if (quest.GetState() == QuestState.Active && quest._quest._done == true)
                 {
                     DisableQuest(quest);
                     return;

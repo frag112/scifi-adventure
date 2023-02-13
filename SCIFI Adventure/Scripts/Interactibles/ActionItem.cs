@@ -5,6 +5,7 @@ namespace ScifiAdventure
 {
     public class ActionItem : Interactible
     {
+        [SerializeField]private Player _player;
 public override void Interact()
         {
             if (_isInteractible)
@@ -13,7 +14,13 @@ public override void Interact()
                 SetIntaractState(false);
             }
         }
+               protected override void InterractAction()
+        {
+            PlaySound(this._interractSound);
+           _player.PlayerInteracts(this);
+        }
     }
+
 
 }
 

@@ -73,9 +73,10 @@ public class UIHandler : MonoBehaviour
         }
         public void UpdateQuestList(List<Quest> quests)
         {
-            for (int i = 0; i < quests.Count; i++)
+            for (int i = 0; i < 2; i++)
             {
-                if (quests[i].GiveTitle()!= null)
+                Debug.Log(i);
+                if (quests.Count > i)
                 {
                     _questTexts[i].text = quests[i].GiveTitle();
                 }

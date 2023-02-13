@@ -15,7 +15,7 @@ namespace ScifiAdventure
             if (CanGetNewQuest()) 
             {
                 _quests.Add(quest);
-                _uiHandler.UpdateQuestList(_quests);
+                _uiHandler.UpdateQuestList(_quests);                
             }
         }
         public void PlayerFinishQuest(Quest quest)
@@ -53,7 +53,7 @@ namespace ScifiAdventure
             {
                 if (quest == goal)
                 {
-                    quest.Complete(); // let quest giver check this value
+                    quest._done = true; // let quest giver check this value
                 }
             }
         }

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4ba0534336562541bf26576542ee806, type: 3}
-  m_Name: Coffee
+  m_Name: soda
   m_EditorClassIdentifier: 
-  _title: Find Coffee
+  _title: Find soda
   _dialogue:
   - 'i give you quest '
-  - find coffee
+  - find soda
   _optionalDialogue:
-  - find my coffee
+  - find my soda
   _finishDialogue:
-  - Thank you for my coffee
+  - Thank you for my soda
   _done: 1

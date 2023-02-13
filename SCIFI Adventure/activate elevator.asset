@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4ba0534336562541bf26576542ee806, type: 3}
-  m_Name: Coffee
+  m_Name: activate elevator
   m_EditorClassIdentifier: 
-  _title: Find Coffee
+  _title: activate elevator
   _dialogue:
-  - 'i give you quest '
-  - find coffee
+  - go activate
   _optionalDialogue:
-  - find my coffee
+  - activate elevator
   _finishDialogue:
-  - Thank you for my coffee
-  _done: 1
+  - you did it
+  _done: 0
