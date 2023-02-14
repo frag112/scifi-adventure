@@ -10,14 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4ba0534336562541bf26576542ee806, type: 3}
-  m_Name: soda
+  m_Name: 1 Bring soda 1
   m_EditorClassIdentifier: 
-  _title: Find soda
+  _title: Get Sharkman Soda
   _dialogue:
-  - 'i give you quest '
-  - find soda
+  - Hi! You woke up
+  - Can you get me a soda? I feel terrible without my dayly dose of sugar
+  - The vending machine is on the top floor
+  - Near the stairs, cant miss it
   _optionalDialogue:
-  - find my soda
+  - Bring me some drink
+  - It on the top floor, near the stairs
   _finishDialogue:
-  - Thank you for my soda
+  - Thanks! Youkinda saved my life. I feel better now
   _done: 0
