@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace ScifiAdventure
 {
-    public class Pickable : Interactible
+    public class Pickable : ActionItem
     {
         [SerializeField] private Item _item;
-        [SerializeField] private Player _player;
-        protected override void InterractAction()
+        public override void Interact()
         {
 
             if (_player.PlayerGetsItem(_item))

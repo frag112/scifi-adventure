@@ -1,27 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 namespace ScifiAdventure
 {
+[RequireComponent(typeof(AudioSource))]
     public class ActionItem : Interactible
     {
-        [SerializeField]private Player _player;
-public override void Interact()
+    [SerializeField] protected bool _isInteractible;
+    [SerializeField] protected AudioClip _interractSound, _noAccessSound;
+    protected AudioSource _audioSource;
+    public Quest _goal; 
+    protected virtual void OnEnable()
         {
-            if (_isInteractible)
+            _audioSource = GetComponent<AudioSource>();
+        }
+    protected virtual void PlaySound(AudioClip sound)
+        {
+            if (!_audioSource.isPlaying)
             {
-                InterractAction();
-                SetIntaractState(false);
+                this._audioSource.PlayOneShot(sound);
             }
         }
-               protected override void InterractAction()
+    public override void Interact()
         {
             PlaySound(this._interractSound);
            _player.PlayerInteracts(this);
         }
     }
-
-
 }
-
-

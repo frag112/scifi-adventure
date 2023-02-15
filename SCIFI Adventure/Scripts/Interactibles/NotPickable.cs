@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace ScifiAdventure
 {
-    public class NotPickable : Interactible
+    public class NotPickable : ActionItem
     {
-        [SerializeField] private Player _player;
         [SerializeField] private string[] _lines;
-        protected override void InterractAction()
+        public override void Interact()
         {
             PlaySound(_interractSound);
             UIHandler.Instance.RecieveDialogueLines(_lines);

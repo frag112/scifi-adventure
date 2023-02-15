@@ -8,13 +8,12 @@ namespace ScifiAdventure
         private Animator _animator;
         public bool closed = false;
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             _animator = GetComponent<Animator>();
-            _audioSource = GetComponent<AudioSource>();
         }
-
-        protected override void InterractAction()
+        public override void Interact()
         {
             if (!closed)
             {
@@ -26,7 +25,7 @@ namespace ScifiAdventure
             }
         }
 
-        protected override void LeaveAction()
+        protected override void Leave()
         {
             _animator.SetBool("character_nearby", false);
         }

@@ -9,11 +9,9 @@ namespace ScifiAdventure
     public class QuestGiver : NPC
     {
         [Header("Quest section")]
+        [SerializeField] private string _noQuestsDialogue;
         [Tooltip("List of quests this NPC has")]
         [SerializeField] private List<QuestWrapper> _quests;
-
-        [SerializeField] private Player _player;
-        [SerializeField] private string _noQuestsDialogue;
         public override void Interact()
         {
             foreach (var quest in _quests)

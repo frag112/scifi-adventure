@@ -38,7 +38,7 @@ namespace ScifiAdventure
             }
             return false;
         }
-        public bool PlayerInteracts(Interactible interactible)
+        public bool PlayerInteracts(ActionItem interactible)
         {
             if (interactible._goal != null)
             {
