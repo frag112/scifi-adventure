@@ -14,7 +14,7 @@ namespace ScifiAdventure
         {
             _animator = GetComponent<Animator>();
         }
-        protected virtual void TriggerAnimations()
+        protected virtual void TriggerAnimations()  // запустить анимацию и звук при разговоре
         {
             _animator.SetTrigger("Talking");
 

@@ -84,12 +84,12 @@ namespace StarterAssets
                 SwitchActionControl("Player");
 			}
         }
-		public void OnSubmit(InputValue value)
+		public void OnSubmit(InputValue value)// кнопка подтверждения в ui navigation схеме, пока ничего не делает, но нужна для использования предмета
 		{
 		
 			//Debug.Log("i am sumiy");
 		}
-		public void OnCancel()
+		public void OnCancel()  // выйти из инвентаря при вкл инвентаре
 		{
             var currentActionMap = _playerInput.currentActionMap.name;
             if (_playerInput.currentActionMap.name == "UI Navigation")
@@ -98,7 +98,7 @@ namespace StarterAssets
 				SwitchActionControl("Player");
             }
         }
-        public void OnNextDialogue()
+        public void OnNextDialogue()  // если вкл кправление в дилогах то перейти на след линию
         {
 			var currentActionMap = _playerInput.currentActionMap.name;
             if(_playerInput.currentActionMap.name == "Dialogue Navigation")
@@ -106,7 +106,7 @@ namespace StarterAssets
 				UIHandler.Instance.ContinueDialogue();
 			}
         }
-		public void OnSkipDialogue()
+		public void OnSkipDialogue()  // если включено управление в диалогах скипнуть диалог
 		{
             if (_playerInput.currentActionMap.name == "Dialogue Navigation")
             {
@@ -137,11 +137,11 @@ namespace StarterAssets
 		}
 
 
-        public void AssignInteractibe(Interactible newInteractible)
+        public void AssignInteractibe(Interactible newInteractible) // вписывает активный интерактибл в поле. Его метод interact будет вызываться при нажатии на кнопочку
         {
             _currentInteractible = newInteractible;
 		}
-        public void SwitchActionControl(string schemeName)
+        public void SwitchActionControl(string schemeName) // переключает набор управления по имени
         {
             _playerInput.SwitchCurrentActionMap(schemeName);
         }

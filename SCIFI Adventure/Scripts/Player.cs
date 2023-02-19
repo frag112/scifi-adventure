@@ -5,12 +5,12 @@ namespace ScifiAdventure
 {
     public class Player : MonoBehaviour
     {
-        [SerializeField] private List<Quest> _quests;
-        [SerializeField] private List<Item> _items;
+        [SerializeField] private List<Quest> _quests; // список квестов на игроке
+        [SerializeField] private List<Item> _items; // список вещей на игроке
         [SerializeField] private UIHandler _uiHandler;
         public int _inventorySlots;
         [SerializeField] private int _inventoryOccupiedSlots;
-        public void PlayerGetQuest(Quest quest)
+        public void PlayerGetQuest(Quest quest)  // дает игроку квест если можно
         {
             if (CanGetNewQuest()) 
             {
@@ -18,7 +18,7 @@ namespace ScifiAdventure
                 _uiHandler.UpdateQuestList(_quests);                
             }
         }
-        public void PlayerFinishQuest(Quest quest)
+        public void PlayerFinishQuest(Quest quest) // удаляет квест с игрока при его завершении
         {
             _quests.Remove(quest);
             _uiHandler.UpdateQuestList(_quests);
@@ -27,7 +27,7 @@ namespace ScifiAdventure
         {
             return (_quests.Count < 2);
         }
-        public bool PlayerGetsItem(Item item)
+        public bool PlayerGetsItem(Item item) // игроку добавляется предмет в инвентарь и проверяется нужен ли он для квеста
         {
             if (_inventoryOccupiedSlots < _inventorySlots)
             {
@@ -38,7 +38,7 @@ namespace ScifiAdventure
             }
             return false;
         }
-        public bool PlayerInteracts(ActionItem interactible)
+        public bool PlayerInteracts(ActionItem interactible)  //  при взаимодействии с предметом проверяется, нужен ли он для квеста
         {
             if (interactible._goal != null)
             {
@@ -57,7 +57,7 @@ namespace ScifiAdventure
                 }
             }
         }
-        public bool PlayerGivesItem(Item item)
+        public bool PlayerGivesItem(Item item)  // должна запускаться при выполнении квеста где нужен этот предмет
         {
             foreach (var currentItem in _items)
             {
@@ -71,7 +71,7 @@ namespace ScifiAdventure
             return false;
         }
         // player cannot combine items if the inventory is full
-        public void PlayerCombinesItems(Item item1, Item item2)
+        public void PlayerCombinesItems(Item item1, Item item2)// проверка можно ли скомбинировать предметы и создание нового и удаление старых в случае удачи, можно сделать чтобы возвращала бул чтобы ui отображал невозможность комбинирования например
         {
             if (PlayerGetsItem(item1.CombinedWith(item2)))
             {

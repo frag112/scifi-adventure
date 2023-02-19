@@ -7,7 +7,7 @@ namespace ScifiAdventure
     {
         public static InventoryController Instance;
         [SerializeField] private Player _player;
-        private void Awake()
+        private void Awake() // пока что здесь ничего не происходит, только вот эта проверка на синглтон
         {
             if (Instance != null && Instance != this)
             {
