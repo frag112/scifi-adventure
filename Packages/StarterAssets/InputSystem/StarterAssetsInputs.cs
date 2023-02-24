@@ -1,7 +1,8 @@
 using ScifiAdventure;
 using UnityEngine;
-#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
+
 
 #endif
 
@@ -28,6 +29,7 @@ namespace StarterAssets
 		public bool pause, submit;
 
         private Interactible _currentInteractible;
+		[SerializeField] private InventoryController _inventoryController; // наш контроллер инвентаря
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         public void OnMove(InputValue value)
@@ -62,8 +64,10 @@ namespace StarterAssets
 
 		public void OnInventory(InputValue value)
 		{
+			// пускай он обращается сначала к контроллеру инвентаря и говорит ему что нужно показать инвентарь
+			_inventoryController.PopulateInventoryUI();
             SwitchActionControl("UI Navigation");
-			UIHandler.Instance.ShowInventory();
+			//
         }
 
 
