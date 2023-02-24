@@ -9,7 +9,7 @@ namespace ScifiAdventure
 public class UIHandler : MonoBehaviour
 {
         public static UIHandler Instance { get; private set; }
-        [SerializeField] private GameObject _actionPanel, _pauseMenu, _inventoryMenu;  // ui панели
+        [SerializeField] private GameObject _actionPanel, _pauseMenu, _inventoryMenu, _inventoryItemsPanel;  // ui панели
         [SerializeField] private Animator _dialogueAnimator, _questAnimator, _actionAnimator; // анимторы
         private TMP_Text _dialogueText;  
         private int _dialogueIndex;
@@ -102,9 +102,15 @@ public class UIHandler : MonoBehaviour
         {
             _inventoryMenu.SetActive(false);
         }
-        public void ShowInventory()
+        public void ShowInventory(Sprite[] itemIcons = null) // показать инвентарь
         {
+            // взять  _inventoryItemsPanel, найти дочерние все элементы и собрать их массив
+            // 
             _inventoryMenu.SetActive(true);
+            for (int i = 0; i < itemIcons.Length; i++){
+                //  
+                // у каждого элемента массива дочернему объекту дать иконку которая приехала в массиве itemIcons
+            }
             
         }
         public void ShowHidePauseMenu()
