@@ -12,6 +12,7 @@ namespace ScifiAdventure
         [SerializeField] public Quest _quest;
         [SerializeField] private List<GameObject> _activeWithQuest;
         [SerializeField] private List<GameObject> _disableWithQuestEnd;
+        [SerializeField] private List<GameObject> _activeWithQuestEnd;
         [SerializeField] private List<GameObject> _disableWithQuest;
 
 
@@ -36,6 +37,10 @@ namespace ScifiAdventure
             foreach (var go in _disableWithQuestEnd)
             {
                 go.SetActive(false);
+            }
+            foreach (var go in _activeWithQuestEnd)
+            {
+                go.SetActive(true);
             }
         }
         public void Disable()

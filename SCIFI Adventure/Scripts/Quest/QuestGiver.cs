@@ -86,6 +86,7 @@ namespace ScifiAdventure
         private void DisableQuest(QuestWrapper quest)
         {
             UIHandler.Instance.RecieveDialogueLines(quest._quest.GiveFinishDialogue());
+            quest.Complete();
             quest.Disable();
             _player.PlayerFinishQuest(quest._quest);
             //_player.PlayerGivesItem(item);

@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4ba0534336562541bf26576542ee806, type: 3}
-  m_Name: activate elevator
+  m_Name: 5 Use Battery
   m_EditorClassIdentifier: 
-  _title: activate elevator
+  _title: Use Battery
   _dialogue:
-  - go activate
+  - Inside the storage you can find green battery
+  - 'Go to the broken generator and Swap it '
   _optionalDialogue:
-  - activate elevator
+  - 'Battery is in the storage. '
+  - Swap it with broken one
   _finishDialogue:
-  - you did it
+  - Great job!
   _done: 0

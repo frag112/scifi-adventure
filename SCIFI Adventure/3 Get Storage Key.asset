@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4ba0534336562541bf26576542ee806, type: 3}
-  m_Name: 2 Get Storage Key
+  m_Name: 3 Get Storage Key
   m_EditorClassIdentifier: 
-  _title: Check Generators
+  _title: Get Storage Key
   _dialogue:
-  - Now lets do some real work
-  - One of our generators is not giving full capasity
-  - I believe the problem is in its subsystem
-  - Can you manually check generators for me?
+  - So, batteries...
+  - We have them in the Storage room, but it might be locked
+  - The Girl has a masterkeycard.
+  - ' Get it and use it to open Storage door'
   _optionalDialogue:
-  - Check all generators on the machine floor
-  - It down the stairs
+  - You need to get a keycard
+  - Try to ask the Girl. She is The Navigation Room
+  - Then, take the new battery from Storage and swap it.
   _finishDialogue:
   - I see readings go up now. Great job rookie!
   _done: 0
