@@ -1,23 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 namespace ScifiAdventure
 {
     [RequireComponent(typeof(Animator))]
-    public class Door : Interactible
+    public class Door : ActionItem
     {
         private Animator _animator;
-        private void OnEnable()
+        public bool closed = false; // для того чтобы игрок не мог открыть дверь без ключа или до определенного евента/квеста
+
+        protected override void OnEnable()
         {
-            _animator= GetComponent<Animator>();
-            _audioSource = GetComponent<AudioSource>();
+            base.OnEnable();
+            _animator = GetComponent<Animator>();
         }
-        
-        protected override void InterractAction()
+        public override void Interact() // открывается при нажатии игроком кнопки взаимодействия, 
         {
-            if (_isInteractible)
+            if (!closed)
             {
                 _animator.SetBool("character_nearby", true);
             }
@@ -26,10 +24,10 @@ namespace ScifiAdventure
                 PlaySound(_noAccessSound);
             }
         }
-        protected override void LeaveAction()
+
+        protected override void Leave()
         {
-            _animator.SetBool("character_nearby", false);        
+            _animator.SetBool("character_nearby", false);
         }
     }
 }
-

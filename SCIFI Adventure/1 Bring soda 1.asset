@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ba0534336562541bf26576542ee806, type: 3}
+  m_Name: 1 Bring soda 1
+  m_EditorClassIdentifier: 
+  _title: Get Sharkman Soda
+  _dialogue:
+  - Hi! You woke up
+  - Can you get me a soda? I feel terrible without my dayly dose of sugar
+  - The vending machine is on the top floor
+  - Near the stairs, cant miss it
+  _optionalDialogue:
+  - Bring me some drink
+  - It on the top floor, near the stairs
+  _finishDialogue:
+  - Thanks! Youkinda saved my life. I feel better now
+  _done: 0

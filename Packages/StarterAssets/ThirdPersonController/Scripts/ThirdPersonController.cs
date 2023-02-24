@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using ScifiAdventure;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -33,8 +34,8 @@ namespace StarterAssets
 
         public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
-        [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
-
+        //[Range(0, 1)] public float FootstepAudioVolume = 0.5f;
+        public AudioSource FootStepSource; 
         [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
         public float FallTimeout = 0.15f;
 
@@ -67,6 +68,9 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+
+
+        
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -80,7 +84,6 @@ namespace StarterAssets
         private float _terminalVelocity = 53.0f;
 
         // timeout deltatime
-        private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
 
         // animation IDs
@@ -91,6 +94,7 @@ namespace StarterAssets
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
+        
 #endif
         private Animator _animator;
         private CharacterController _controller;
@@ -151,8 +155,6 @@ namespace StarterAssets
             GravityPlayer();
             GroundedCheck();
             Move();
-            Interaction();
-            Inventory();
         }
 
         private void LateUpdate()
@@ -271,23 +273,6 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
         }
-
-        private void Interaction() // взаимодействие 
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Debug.Log("Interaction");
-            }
-        }
-
-        private void Inventory() // инвентарь 
-        {
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                Debug.Log("Inventory");
-            }
-        }
-
         private void GravityPlayer()
         {
             if (Grounded)
@@ -315,21 +300,6 @@ namespace StarterAssets
             if (lfAngle > 360f) lfAngle -= 360f;
             return Mathf.Clamp(lfAngle, lfMin, lfMax);
         }
-
-        private void OnDrawGizmosSelected()
-        {
-            Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
-            Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
-
-            if (Grounded) Gizmos.color = transparentGreen;
-            else Gizmos.color = transparentRed;
-
-            // when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
-            Gizmos.DrawSphere(
-                new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
-                GroundedRadius);
-        }
-
         private void OnFootstep(AnimationEvent animationEvent)
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
@@ -337,7 +307,8 @@ namespace StarterAssets
                 if (FootstepAudioClips.Length > 0)
                 {
                     var index = Random.Range(0, FootstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                    //AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                    FootStepSource.PlayOneShot(FootstepAudioClips[index]);
                 }
             }
         }
@@ -346,7 +317,8 @@ namespace StarterAssets
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-                AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                //AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                FootStepSource.PlayOneShot(LandingAudioClip);
             }
         }
     }

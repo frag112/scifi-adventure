@@ -1,23 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ScifiAdventure
 {
-    [System.Serializable]
-    public class Quest
+    //[System.Serializable]
+    [CreateAssetMenu(fileName = "New Quest", menuName = "Quest")]
+    public class Quest : ScriptableObject
     {
-        public QuestState _state;
-        [SerializeField] public QuestGoal _goal;
-        [SerializeField] private string _title, _description, _optionalDescription;
+        [SerializeField] private string _title;
+        [SerializeField] private string[] _dialogue, _optionalDialogue, _finishDialogue;
+        [SerializeField] public bool _done;
 
-        public string GiveDescription()
+        public string[] GiveDialogue()
         {
-            return _description;
+            return _dialogue;
         }
-        public string GiveOptionalDescription()
+        public string[] GiveOptionalDialogue()
         {
-            return _optionalDescription;
+            return _optionalDialogue;
+        }
+        public string[] GiveFinishDialogue()
+        {
+            return _finishDialogue;
         }
         public string GiveTitle()
         {
@@ -29,7 +32,8 @@ namespace ScifiAdventure
     {
         NotActive,
         Active,
-        Completed
+        Completed,
+        Disabled
     }
 }
-
+// make qestwrapper not monobehavior and attach it as array to quest npc

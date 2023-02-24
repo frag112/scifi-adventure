@@ -6,98 +6,91 @@ using UnityEngine;
 namespace ScifiAdventure
 {
     [RequireComponent(typeof(Animator))]
-    public class QuestGiver : Interactible
+    public class QuestGiver : NPC
     {
         [Header("Quest section")]
-        [SerializeField] protected bool _canTalk;
+        [SerializeField] private string _noQuestsDialogue;
         [Tooltip("List of quests this NPC has")]
-        [SerializeField] private List<Quest> _quests;
-        [Header("NPC own components section")]
-        [SerializeField]private AudioSource _mouth;
-        [SerializeField] private AudioClip _speech;
-
-        [SerializeField] private Player _player;
-
-        private Animator _animator;
-
-        private void OnEnable()
+        [SerializeField] private List<QuestWrapper> _quests;
+        public override void Interact()
         {
-            _animator= GetComponent<Animator>();
-        }
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Player"))
+            foreach (var quest in _quests)
             {
-                if (_player.CanGetNewQuest())
+                if (quest.GetState() == QuestState.Active && quest._quest._done == true)
                 {
-                    GiveQuest();
+                    DisableQuest(quest);
                     return;
                 }
-                GiveHelpWithQuests();
             }
+            QuestWrapper nextQuest = null;
+            foreach(QuestWrapper quest in _quests)
+            {
+                if (quest.GetState() == QuestState.NotActive)
+                {
+                    nextQuest = quest;
+                    break;
+                }
+            }
+            if (_player.CanGetNewQuest() && nextQuest !=null)
+            {
+                GiveQuest(nextQuest);
+                return;
+            }
+            GiveHelpWithQuests();
         }
         private void GiveHelpWithQuests()
         {
-            List <string> descriptions= new List<string>();
-            string finalLine = "";
+            List<string[]> dialogues = new List<string[]>();
+
             foreach (var quest in _quests)
             {
-                if (quest._state == QuestState.Active)
+                if (quest.GetState() == QuestState.Active)
                 {
-                    descriptions.Add(quest.GiveOptionalDescription());
+                    dialogues.Add(quest._quest.GiveOptionalDialogue());
                 }
             }
-            switch (descriptions.Count)
+            var combinedDialogues = new List<string>();
+            switch (dialogues.Count)
             {
                 case 0:
-                    finalLine = "Talk with the other guy";
+                    combinedDialogues.Add(_noQuestsDialogue);
+                    //TriggerAnimations(); //bad dialogue audio
                     break;
                 case 1:
-                    finalLine = ($"Like I said, you need to do this.{descriptions[0]} Come back, when you finish.");
+                    combinedDialogues.Add("So, this is what you have to do:");
+                    combinedDialogues.AddRange(dialogues[0]);
+                    combinedDialogues.Add("Come back, when you finish.");
                     break;
                 case 2:
-                    finalLine = ($"Okay.First - {descriptions[0]} Then, {descriptions[1]} It is not so hard, you know.");
+                    combinedDialogues.Add("In case you have forgotten, your first task is:");
+                    combinedDialogues.AddRange(dialogues[0]);
+                    combinedDialogues.Add("And another one:");
+                    combinedDialogues.AddRange(dialogues[1]);
+                    combinedDialogues.Add("Looks like a quite intersting adveture, heh.");
                     break;
                 default:
-                    finalLine = "We are not supposed to talk now";
+                    combinedDialogues.Add("You not supposed to see this line, I guess the game is broken. Contact creators for help");
                     break;
             }
-            UIHandler.Instance.ShowDialogue(finalLine);
+
+            UIHandler.Instance.RecieveDialogueLines(combinedDialogues.ToArray());
             TriggerAnimations();
         }
-        private void GiveQuest()
+        private void GiveQuest(QuestWrapper quest)
         {
-
-                foreach (var quest in _quests)
-                {
-
-                    if (quest._state == QuestState.NotActive)
-                    {
-                        quest._state = QuestState.Active;
-                    UIHandler.Instance.ShowDialogue(quest.GiveDescription());
-                        _player.PlayerGetQuest(quest);
+                        quest.StartQuest();
+                   UIHandler.Instance.RecieveDialogueLines(quest._quest.GiveDialogue());
+                        _player.PlayerGetQuest(quest._quest);
                         TriggerAnimations();
-                    break;
-                    }
-                }
-
         }
-        private void TriggerAnimations()
+        private void DisableQuest(QuestWrapper quest)
         {
-            _animator.SetTrigger("Talking");
-
-            if (!_mouth.isPlaying)
-            {
-                _mouth.PlayOneShot(_speech);
-            }
-        }
-
-        private void CanTalkNow()
-        {
-            _canTalk = true;
+            UIHandler.Instance.RecieveDialogueLines(quest._quest.GiveFinishDialogue());
+            quest.Disable();
+            _player.PlayerFinishQuest(quest._quest);
+            //_player.PlayerGivesItem(item);
+            TriggerAnimations();
         }
     }
 
 }
-
-
