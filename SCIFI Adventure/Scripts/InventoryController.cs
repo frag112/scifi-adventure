@@ -5,20 +5,38 @@ namespace ScifiAdventure
 {
     public class InventoryController : MonoBehaviour
     {
-        public static InventoryController Instance;
-        [SerializeField] private Player _player;
-        private void Awake() // пока что здесь ничего не происходит, только вот эта проверка на синглтон
+        public Transform itemsPanel;
+        public List<InventoryItemHolder> slots = new List<InventoryItemHolder>();
+        
+        private void Start() // добавляет предмет в инвентарь
         {
-            if (Instance != null && Instance != this)
+            for (int i = 0; i < itemsPanel.childCount; i++)
             {
-                Destroy(gameObject);
-            }
-            else
-            {
-                Instance = this;
+                if (itemsPanel.GetChild(i).GetComponent<InventoryItemHolder>() != null)
+                {
+                    slots.Add(itemsPanel.GetChild(i).GetComponent<InventoryItemHolder>());
+                }
             }
         }
 
+        private void AddItem(Item _item)
+        {
+            foreach (InventoryItemHolder itemHolder in slots)
+            {
+                if (itemHolder.item == _item)
+                {
+                    return;
+                }
+            }
 
+            foreach (InventoryItemHolder itemHolder in slots)
+            {
+                if (itemHolder.isEmpty == false)
+                {
+                    itemHolder.item = _item;
+                    itemHolder.isEmpty = false;
+                }
+            }
+        }
     }
 }
