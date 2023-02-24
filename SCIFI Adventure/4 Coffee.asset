@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ba0534336562541bf26576542ee806, type: 3}
+  m_Name: 4 Coffee
+  m_EditorClassIdentifier: 
+  _title: Find Coffee
+  _dialogue:
+  - Listen, I have too much work here
+  - Bring me coffee please
+  - I think, I left it on my desk
+  _optionalDialogue:
+  - find my coffee
+  - It must be on my desk
+  _finishDialogue:
+  - 'Thank you, it is a tough morning tou know '
+  - Listen. I think that meteor hit our air system.
+  - I need to run series of check for now
+  _done: 0
