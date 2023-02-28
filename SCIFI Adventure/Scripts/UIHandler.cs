@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using StarterAssets;
+using UnityEngine.UI;
 
 namespace ScifiAdventure
 {
 public class UIHandler : MonoBehaviour
 {
         public static UIHandler Instance { get; private set; }
-        [SerializeField] private GameObject _actionPanel, _pauseMenu, _inventoryMenu, _inventoryItemsPanel;  // ui панели
-        [SerializeField] private Animator _dialogueAnimator, _questAnimator, _actionAnimator; // анимторы
+        [SerializeField] private GameObject _actionPanel, _pauseMenu, _inventoryMenu, _inventoryItemsPanel;  
+        [SerializeField] private Animator _dialogueAnimator, _questAnimator, _actionAnimator; 
         private TMP_Text _dialogueText;  
         private int _dialogueIndex;
-        [SerializeField] private List<TMP_Text> _questTexts; // панельки для вывода списка квестов
+        [SerializeField] private List<TMP_Text> _questTexts; 
         [SerializeField] private StarterAssetsInputs _player;
         private List<string> _dialogueLines = new List<string>();
         [HideInInspector] public bool _isDialog = false;
@@ -30,7 +31,7 @@ public class UIHandler : MonoBehaviour
                 Instance = this;
             }
         }
-        public void RecieveDialogueLines(string[] newDialogueLines)  // получает текст от котого либо 
+        public void RecieveDialogueLines(string[] newDialogueLines)  
         {
             _dialogueIndex = 0;
             _dialogueLines = new List<string>(newDialogueLines.Length);
@@ -42,11 +43,11 @@ public class UIHandler : MonoBehaviour
             _dialogueText = _dialogueAnimator.GetComponentInChildren<TMP_Text>();
             _actionAnimator= _actionPanel.GetComponent<Animator>();
         }
-        public void ShowActionPanel(bool South = true, bool East = false, bool West = false, bool North = false) // показать диалоговую панель
+        public void ShowActionPanel(bool South = true, bool East = false, bool West = false, bool North = false)
         {
             if (South) _actionPanel.SetActive(true);
         }
-        public void ShowDialogue() // переключает у игрока схему управления (здесь этого кажется не должно быть но) и выводит текст на экран
+        public void ShowDialogue() 
         {
             _isDialog= true;
             _player.SwitchActionControl("Dialogue Navigation");
@@ -55,7 +56,7 @@ public class UIHandler : MonoBehaviour
             
             
         }
-        public void ContinueDialogue()  // построчный вывод диалогов
+        public void ContinueDialogue()  
         {
             if (_dialogueIndex  < _dialogueLines.Count -1)
             {
@@ -67,13 +68,13 @@ public class UIHandler : MonoBehaviour
                 SkipDialogue();
             }
         }
-        public void SkipDialogue() // сворачивает панель диалога, возвращает управление игроку 
+        public void SkipDialogue() 
         {
             _dialogueAnimator.SetBool("Active", false);
             _player.SwitchActionControl("Player");
             _isDialog = false;
         }
-        public void UpdateQuestList(List<Quest> quests)  // апдейтит визуальный список активных квестов
+        public void UpdateQuestList(List<Quest> quests)  
         {
             for (int i = 0; i < 2; i++)
             {
@@ -87,7 +88,7 @@ public class UIHandler : MonoBehaviour
                 }
             }
         }
-        public void ShowActiveQuests()  //показывает панель с квестами
+        public void ShowActiveQuests() 
         {
             if (_questAnimator.GetBool("Active"))
             {
@@ -105,22 +106,18 @@ public class UIHandler : MonoBehaviour
         }
         public void ShowInventory(Sprite[] itemIcons = null) // показать инвентарь
         {
-            // взять  _inventoryItemsPanel, найти дочерние все элементы и собрать их массив
             List<GameObject> itemHolders = new List<GameObject>();
 
             for (int i = 0; i < _inventoryItemsPanel.transform.childCount; i++)
             {
                 itemHolders.Add(_inventoryItemsPanel.transform.GetChild(i).gameObject);
             }
-
             _inventoryMenu.SetActive(true);
             for (int i = 0; i < itemIcons.Length; i++)
             {
-                var image = itemHolders[i].gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
+                var image = itemHolders[i].gameObject.transform.GetChild(0).GetComponent<Image>();
                 image.sprite = itemIcons[i];
-                // у каждого элемента массива дочернему объекту дать иконку которая приехала в массиве itemIcons
-            }
-            
+            }            
         }
         public void ShowHidePauseMenu()
         {

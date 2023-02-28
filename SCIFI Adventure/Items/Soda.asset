@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Cola can
   _description: It says its sugar free. I bet it tastes lake rubber
-  _itemIcon: {fileID: 21300000, guid: 0d6887c5e31a67d4c9c3988379769ec4, type: 3}
+  itemIcon: {fileID: 21300000, guid: 0d6887c5e31a67d4c9c3988379769ec4, type: 3}
   _itemCombineWith: {fileID: 0}
   _resultItem: {fileID: 0}
   _requiredForQuest: {fileID: 11400000, guid: 5c540b7a8f25d1f4685a345340387a18, type: 2}

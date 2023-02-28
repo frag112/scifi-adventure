@@ -64,10 +64,8 @@ namespace StarterAssets
 
 		public void OnInventory(InputValue value)
 		{
-			// пускай он обращается сначала к контроллеру инвентаря и говорит ему что нужно показать инвентарь
 			_inventoryController.PopulateInventoryUI();
             SwitchActionControl("UI Navigation");
-			//
         }
 
 

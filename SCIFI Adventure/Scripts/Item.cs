@@ -8,7 +8,7 @@ namespace ScifiAdventure
     public class Item : ScriptableObject
     {
         [SerializeField] private string _name, _description;
-        [SerializeField] public Sprite itemIcon;
+        [SerializeField] private Sprite itemIcon;
         [SerializeField] private Item _itemCombineWith, _resultItem;
         [SerializeField] private Quest _requiredForQuest;
         public Quest RequiredForQuest()
