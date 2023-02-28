@@ -17,6 +17,8 @@ public class UIHandler : MonoBehaviour
         [SerializeField] private StarterAssetsInputs _player;
         private List<string> _dialogueLines = new List<string>();
         [HideInInspector] public bool _isDialog = false;
+
+        
         private void Awake()  // проверка на синглтон
         {
             if (Instance != null && Instance != this)
@@ -105,10 +107,18 @@ public class UIHandler : MonoBehaviour
         public void ShowInventory(Sprite[] itemIcons = null) // показать инвентарь
         {
             // взять  _inventoryItemsPanel, найти дочерние все элементы и собрать их массив
-            // 
+            List<GameObject> itemHolders = new List<GameObject>();
+
+            for (int i = 0; i < _inventoryItemsPanel.transform.childCount; i++)
+            {
+                itemHolders.Add(_inventoryItemsPanel.transform.GetChild(i).gameObject);
+            }
+
             _inventoryMenu.SetActive(true);
-            for (int i = 0; i < itemIcons.Length; i++){
-                //  
+            for (int i = 0; i < itemIcons.Length; i++)
+            {
+                var image = itemHolders[i].gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
+                image.sprite = itemIcons[i];
                 // у каждого элемента массива дочернему объекту дать иконку которая приехала в массиве itemIcons
             }
             
