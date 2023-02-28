@@ -29,5 +29,10 @@ namespace ScifiAdventure
         {
             
         }
+        // void OnDisable(){
+        //     if(_player.GetComponentInChildren<StarterAssetsInputs>()._currentInteractible == this){
+        //         _player.GetComponentInChildren<StarterAssetsInputs>().AssignInteractibe(null);
+        //     }
+       // }
     }
 }

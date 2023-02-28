@@ -79,9 +79,12 @@ namespace ScifiAdventure
         private void GiveQuest(QuestWrapper quest)
         {
                         quest.StartQuest();
-                   UIHandler.Instance.RecieveDialogueLines(quest._quest.GiveDialogue());
-                        _player.PlayerGetQuest(quest._quest);
-                        TriggerAnimations();
+
+                        if (quest._quest){
+                            UIHandler.Instance.RecieveDialogueLines(quest._quest.GiveDialogue());
+                            _player.PlayerGetQuest(quest._quest);
+                            TriggerAnimations();
+                        }
         }
         private void DisableQuest(QuestWrapper quest)
         {

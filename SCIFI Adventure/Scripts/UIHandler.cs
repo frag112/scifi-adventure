@@ -75,7 +75,6 @@ public class UIHandler : MonoBehaviour
         {
             for (int i = 0; i < 2; i++)
             {
-                Debug.Log(i);
                 if (quests.Count > i)
                 {
                     _questTexts[i].text = quests[i].GiveTitle();

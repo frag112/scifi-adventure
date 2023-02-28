@@ -28,7 +28,7 @@ namespace StarterAssets
 		[Header("UI Inputs")]
 		public bool pause, submit;
 
-        private Interactible _currentInteractible;
+        public Interactible _currentInteractible;
 		[SerializeField] private InventoryController _inventoryController; // наш контроллер инвентаря
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
