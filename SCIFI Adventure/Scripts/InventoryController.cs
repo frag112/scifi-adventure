@@ -14,33 +14,43 @@ namespace ScifiAdventure
         [SerializeField] private List<Item> _items; // все вещи в инвентаре
         [SerializeField] private UIHandler _uiHandler; // будем туда отправлять задания на отрисовку иконок и всякого такого
         public int _inventorySlots; // сколько здесь штук, столько нужно будет отрисовать пустых квадратиков
-
         [SerializeField] private int _inventoryOccupiedSlots;  // сколько слотов сейчас занято, поставил сериалайз чтобы видеть в инспекторе, изменять не нужно
-       // public Transform itemsPanel;
+        //public Transform itemsPanel;
         //public List<InventoryItemHolder> slots = new List<InventoryItemHolder>();
         
-        private void Start() // добавляет предмет в инвентарь
-        {
-            // for (int i = 0; i < itemsPanel.childCount; i++)
-            // {
-            //     if (itemsPanel.GetChild(i).GetComponent<InventoryItemHolder>() != null)
-            //     {
-            //         slots.Add(itemsPanel.GetChild(i).GetComponent<InventoryItemHolder>());
-            //     }
+       // private void Start() // добавляет предмет в инвентарь
+        //{
+             //for (int i = 0; i < itemsPanel.childCount; i++)
+             //{
+                 //if (itemsPanel.GetChild(i).GetComponent<InventoryItemHolder>() != null)
+                 //{
+                 //    slots.Add(itemsPanel.GetChild(i).GetComponent<InventoryItemHolder>());
+                 //}
             // }
-        }
+       // }
         public void PopulateInventoryUI()
         {
-           // сделать луп форич _итемс и взять их все картинки, записать в массив иконок 
-
+            // сделать луп форич _итемс и взять их все картинки, записать в массив иконок
+            
+            foreach (Item icons in _items)
+            {
+                
+            }
             // здесь контроллер должен передать иконки
-            UIHandler.Instance.ShowInventory(/*массив иконок*/);
+            UIHandler.Instance.ShowInventory();
         }
 
-        private void AddItem(Item _item)
+        private bool AddItem(Item _item)
         {
-// забрать логику у плауергетситем
+            // забрать логику у плауергетситем
 
+            if (_inventoryOccupiedSlots < _inventorySlots)
+            {
+                _items.Add(_item);
+                _inventoryOccupiedSlots++;
+                return true;
+            }
+            return false;
             // foreach (InventoryItemHolder itemHolder in slots)
             // {
             //     if (itemHolder.item == _item)
@@ -60,11 +70,30 @@ namespace ScifiAdventure
 
 
         }
-        public void RemoveItem(Item item){
-// PlayerGivesItem сюда вставить
+        public bool RemoveItem(Item item)
+        {
+            // PlayerGivesItem сюда вставить
+
+            foreach (var currentItem in _items)
+            {
+                if (currentItem == item)
+                {
+                    _items.Remove(currentItem);
+                    _inventoryOccupiedSlots--;
+                    return true;
+                }
+            }
+            return false;
+
         }
-        public void CombineItems(Item item1, Item item2){
-// взять у игрока
+        public void CombineItems(Item item1, Item item2)
+        {
+            // взять у игрока
+            if (RemoveItem(item1.CombinedWith(item2)))
+            {
+                RemoveItem(item1);
+                RemoveItem(item2);
+            }
         }
 
     }
