@@ -22,7 +22,7 @@ Goals:
 All models/sounds/effects are free and available at Unity Asset Store.
 
 <h2>Assets</h2>
-Asssets used in this project:
+Asssets used in this project:<br>
 <a href="https://assetstore.unity.com/packages/3d/cola-can-96659">Cola Can | 3D | Unity Asset Store</a>
 
 <a href="https://assetstore.unity.com/packages/templates/tutorials/adventure-sample-game-76216">Adventure - Sample Game | Tutorials | Unity Asset Store</a>
