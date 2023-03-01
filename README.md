@@ -15,8 +15,8 @@ Goals:
   <br>
   <h2>Developers:</h2>
   <ul>
-<li>Frag112</li>
-<li>Анастасия Лобова: <a href="https://github.com/lobovwva">github</a></li>
+  <li><a href="https://github.com/frag112">Frag112</a></li>
+  <li><a href="mailto:lobovwva@mail.ru">Анастасия Лобова:</a> <a href="https://github.com/lobovwva">github</a></li>
 </ul>
 <br>
 All models/sounds/effects are free and available at Unity Asset Store.
