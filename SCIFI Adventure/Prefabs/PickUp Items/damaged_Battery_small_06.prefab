@@ -209,7 +209,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  _isInteractible: 0
   _interractSound: {fileID: 8300000, guid: 96b6650a22f2cb341a4bbb635f9af634, type: 3}
   _noAccessSound: {fileID: 8300000, guid: 20b36408ef0bfce45b7d4010cc76e7de, type: 3}
   _goal: {fileID: 0}

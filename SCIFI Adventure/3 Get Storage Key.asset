@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ba0534336562541bf26576542ee806, type: 3}
   m_Name: 3 Get Storage Key
   m_EditorClassIdentifier: 
-  _title: Get Storage Key
+  _title: Change Batteries
   _dialogue:
   - So, batteries...
   - We have them in the Storage room, but it might be locked
